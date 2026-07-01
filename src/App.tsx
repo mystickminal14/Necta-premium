@@ -1,41 +1,36 @@
+import { useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useLenis } from "./lib/useLenis";
-import { useIsDesktop } from "./lib/useIsDesktop";
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Stage from "./components/Stage";
-import StageMobile from "./components/StageMobile";
-import BeansBand from "./components/BeansBand";
-import Quality from "./components/Quality";
-import CupSection from "./components/CupSection";
-import OurStory from "./components/OurStory";
-import Process from "./components/Process";
-import VideoSection from "./components/VideoSection";
 import Footer from "./components/Footer";
+import HomePage from "./pages/HomePage";
+import ProductPage from "./pages/ProductPage";
+import ContactPage from "./pages/ContactPage";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [pathname]);
+  return null;
+}
 
 export default function App() {
   useLenis();
-  const isDesktop = useIsDesktop();
 
   return (
     <>
+      <ScrollToTop />
       <Navbar />
-
       <main className="relative">
-        {/* Hero — static pouches, no 3D */}
-        <Hero />
-
-        {/* About + 3D model → scroll → Why Choose Us.
-            Only one variant (and one 3D canvas) mounts. */}
-        {isDesktop ? <Stage /> : <StageMobile />}
-
-        <BeansBand />
-        <Quality />
-        <CupSection />
-        <OurStory />
-        <Process />
-        <VideoSection />
-        <Footer />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/product" element={<ProductPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<HomePage />} />
+        </Routes>
       </main>
+      <Footer />
     </>
   );
 }

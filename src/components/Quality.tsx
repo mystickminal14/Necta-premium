@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { MessageCircle } from "lucide-react";
 
 interface Grade {
@@ -118,13 +119,13 @@ export default function Quality() {
             transition={{ duration: 0.6 }}
             className="mt-8 flex flex-wrap items-center gap-4"
           >
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="group inline-flex items-center gap-2 rounded-full bg-espresso px-7 py-3.5 text-sm font-semibold text-cream transition-all duration-300 hover:scale-[1.03] hover:bg-espresso-2 sm:text-base"
             >
               <MessageCircle className="h-4 w-4" />
               DM us for a sample
-            </a>
+            </Link>
             <span className="text-sm text-espresso/55">
               Not sure which grade? We&apos;ll help you choose.
             </span>

@@ -1,17 +1,29 @@
 import { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { ShoppingBag } from "lucide-react";
 
 const LINKS = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Our Beans", href: "#grades" },
-  { label: "Process", href: "#process" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", to: "/" },
+  { label: "Product", to: "/product" },
+  { label: "Contact", to: "/contact" },
 ];
+
+function Wordmark({ className = "" }: { className?: string }) {
+  return (
+    <span className={`flex items-baseline gap-1.5 leading-none ${className}`}>
+      <span className="font-hand text-[1.6rem] text-caramel sm:text-[1.8rem]">Necta</span>
+      <span className="text-base font-bold uppercase tracking-[0.22em] text-espresso sm:text-lg">
+        Coffee
+      </span>
+    </span>
+  );
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -20,6 +32,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // close mobile menu on route change
+  useEffect(() => setOpen(false), [pathname]);
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-4 sm:pt-5">
       <motion.nav
@@ -27,43 +42,57 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className={[
-          "flex w-full max-w-4xl items-center justify-between gap-3 px-3 py-2 sm:px-4 sm:py-2.5",
+          "flex w-full max-w-5xl items-center justify-between gap-3 px-4 py-2.5 sm:px-5 sm:py-3",
           "rounded-[2.5rem] border transition-all duration-500",
           scrolled
             ? "border-espresso/10 bg-cream/80 shadow-[0_10px_40px_-12px_rgba(36,19,8,0.35)] backdrop-blur-xl"
             : "border-espresso/5 bg-cream/40 backdrop-blur-md",
         ].join(" ")}
       >
-        {/* logo */}
-        <a href="#home" className="flex shrink-0 items-center pl-1">
-          <img
-            src="/img/logo-necta.png"
-            alt="Necta Coffee"
-            className="h-6 w-auto sm:h-7"
-          />
-        </a>
+        {/* wordmark logo */}
+        <Link to="/" className="flex shrink-0 items-center pl-1">
+          <Wordmark />
+        </Link>
 
         {/* desktop links */}
         <ul className="hidden items-center gap-1 md:flex">
           {LINKS.map((l) => (
-            <li key={l.href}>
-              <a
-                href={l.href}
-                className="relative rounded-full px-3.5 py-2 text-sm font-medium text-espresso/80 transition-colors hover:text-espresso"
+            <li key={l.to}>
+              <NavLink
+                to={l.to}
+                className={({ isActive }) =>
+                  [
+                    "relative rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                    isActive
+                      ? "text-espresso"
+                      : "text-espresso/70 hover:text-espresso",
+                  ].join(" ")
+                }
               >
-                {l.label}
-              </a>
+                {({ isActive }) => (
+                  <>
+                    {l.label}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-active"
+                        className="absolute inset-0 -z-10 rounded-full bg-espresso/8"
+                      />
+                    )}
+                  </>
+                )}
+              </NavLink>
             </li>
           ))}
         </ul>
 
         {/* desktop CTA */}
-        <a
-          href="#beans"
-          className="hidden shrink-0 rounded-full bg-espresso px-5 py-2.5 text-sm font-semibold text-cream transition-transform duration-300 hover:scale-[1.04] hover:bg-espresso-2 md:inline-flex"
+        <Link
+          to="/product"
+          className="hidden shrink-0 items-center gap-2 rounded-full bg-espresso px-5 py-2.5 text-sm font-semibold text-cream transition-transform duration-300 hover:scale-[1.04] hover:bg-espresso-2 md:inline-flex"
         >
+          <ShoppingBag className="h-4 w-4" />
           Shop
-        </a>
+        </Link>
 
         {/* mobile toggle */}
         <button
@@ -72,21 +101,9 @@ export default function Navbar() {
           className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-espresso/5 text-espresso md:hidden"
         >
           <div className="space-y-1.5">
-            <span
-              className={`block h-0.5 w-4 bg-espresso transition-transform duration-300 ${
-                open ? "translate-y-2 rotate-45" : ""
-              }`}
-            />
-            <span
-              className={`block h-0.5 w-4 bg-espresso transition-opacity duration-300 ${
-                open ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`block h-0.5 w-4 bg-espresso transition-transform duration-300 ${
-                open ? "-translate-y-2 -rotate-45" : ""
-              }`}
-            />
+            <span className={`block h-0.5 w-4 bg-espresso transition-transform duration-300 ${open ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`block h-0.5 w-4 bg-espresso transition-opacity duration-300 ${open ? "opacity-0" : ""}`} />
+            <span className={`block h-0.5 w-4 bg-espresso transition-transform duration-300 ${open ? "-translate-y-2 -rotate-45" : ""}`} />
           </div>
         </button>
       </motion.nav>
@@ -99,25 +116,28 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.98 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="absolute top-[4.5rem] z-50 w-[min(92vw,22rem)] rounded-3xl border border-espresso/10 bg-cream/95 p-2 shadow-xl backdrop-blur-xl md:hidden"
+            className="absolute top-[4.75rem] z-50 w-[min(92vw,22rem)] rounded-3xl border border-espresso/10 bg-cream/95 p-2 shadow-xl backdrop-blur-xl md:hidden"
           >
             {LINKS.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="block rounded-2xl px-4 py-3 text-base font-medium text-espresso/85 transition-colors hover:bg-espresso/5"
+              <NavLink
+                key={l.to}
+                to={l.to}
+                className={({ isActive }) =>
+                  [
+                    "block rounded-2xl px-4 py-3 text-base font-medium transition-colors",
+                    isActive ? "bg-espresso/5 text-espresso" : "text-espresso/85 hover:bg-espresso/5",
+                  ].join(" ")
+                }
               >
                 {l.label}
-              </a>
+              </NavLink>
             ))}
-            <a
-              href="#beans"
-              onClick={() => setOpen(false)}
-              className="mt-1 block rounded-2xl bg-espresso px-4 py-3 text-center text-base font-semibold text-cream"
+            <Link
+              to="/product"
+              className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-espresso px-4 py-3 text-center text-base font-semibold text-cream"
             >
-              Shop Our Beans
-            </a>
+              <ShoppingBag className="h-4 w-4" /> Shop Our Beans
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>

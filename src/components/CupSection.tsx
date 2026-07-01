@@ -35,7 +35,7 @@ export default function CupSection() {
   const cupY = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
   return (
-    <section id="experience" ref={ref} className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-[radial-gradient(120%_100%_at_50%_-10%,#34543f_0%,#24412f_45%,#1c352a_100%)] py-20 text-cream">
+    <section id="experience" ref={ref} className="relative flex flex-col justify-center overflow-hidden bg-[radial-gradient(120%_100%_at_50%_-10%,#34543f_0%,#24412f_45%,#1c352a_100%)] py-16 text-cream sm:py-20 lg:min-h-screen">
       {/* scattered beans */}
       <img src="/img/bean.png" alt="" aria-hidden className="pointer-events-none absolute left-[8%] top-[16%] w-14 rotate-[40deg] opacity-70" />
       <img src="/img/bean.png" alt="" aria-hidden className="pointer-events-none absolute right-[10%] top-[22%] w-20 -rotate-[20deg] opacity-70" />
@@ -72,7 +72,7 @@ export default function CupSection() {
             style={{ y: cupY }}
             src="/img/cup-product.png"
             alt="A Necta Coffee cup"
-            className="relative mx-auto block w-full max-w-sm drop-shadow-[0_40px_70px_rgba(0,0,0,0.6)]"
+            className="relative mx-auto block w-3/4 max-w-[15rem] drop-shadow-[0_40px_70px_rgba(0,0,0,0.6)] sm:w-full sm:max-w-sm"
           />
         </motion.div>
 
