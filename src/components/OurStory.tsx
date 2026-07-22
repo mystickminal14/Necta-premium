@@ -23,7 +23,7 @@ export default function OurStory() {
           className="relative mx-auto w-full max-w-md"
         >
           <div className="overflow-hidden rounded-[2rem] shadow-[0_30px_80px_-25px_rgba(0,0,0,0.8)]">
-            <img src="/img/pouches-table.png" alt="Necta Coffee pouches" className="aspect-[4/5] w-full object-cover" />
+            <img src="/img/A54208.jpeg" alt="Necta Coffee pouches" className="aspect-[4/5] w-full object-cover" />
           </div>
           <div className="absolute bottom-5 left-5 rounded-2xl bg-caramel/90 px-4 py-3 backdrop-blur-sm">
             <p className="text-[0.6rem] uppercase tracking-[0.18em] text-cream/80">Origin</p>

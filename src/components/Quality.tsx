@@ -57,7 +57,7 @@ export default function Quality() {
           </div>
           {/* floating pouch */}
           <img
-            src="/img/pouch-front.png"
+            src="/img/A24I4700.jpeg"
             alt="Necta Coffee pouch"
             className="absolute -bottom-8 -right-4 w-32 rotate-6 rounded-2xl shadow-2xl sm:w-40"
           />
@@ -144,9 +144,8 @@ function GradeRow({ name, segment, blurb }: Grade) {
         {[1, 2, 3, 4].map((b) => (
           <span
             key={b}
-            className={`h-2 w-8 rounded-full transition-colors ${
-              b <= segment ? "bg-caramel" : "bg-espresso/10"
-            }`}
+            className={`h-2 w-8 rounded-full transition-colors ${b <= segment ? "bg-caramel" : "bg-espresso/10"
+              }`}
           />
         ))}
       </div>
