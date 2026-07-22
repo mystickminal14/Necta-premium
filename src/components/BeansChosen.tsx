@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Sprout, Mountain, Droplets, Flame, ScanLine, PackageCheck } from "lucide-react";
 import type { ReactNode } from "react";
 import ScatterBeans from "./ScatterBeans";
-
+import bean from "../assets/necta-cofe-nags.png";
 interface Feat {
   icon: ReactNode;
   top: string;
@@ -87,10 +87,10 @@ function DesktopStage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute left-1/2 top-1/2 z-10 w-[30rem] -translate-x-1/2 -translate-y-1/2"
+            className="absolute left-1/2 top-1/2 z-10 w-64 -translate-x-1/2 -translate-y-1/2"
           >
             <div className="pointer-events-none absolute left-1/2 top-1/2 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-caramel/25 blur-[90px]" />
-            <img src="/img/newsinglebrew.png" alt="Necta Coffee — Silver Bean single origin" className="relative z-10 mx-auto w-full drop-shadow-[0_50px_80px_rgba(0,0,0,0.65)]" />
+            <img src={bean} alt="Necta Coffee — Silver Bean single origin" className="relative z-10 mx-auto w-full drop-shadow-[0_50px_80px_rgba(0,0,0,0.65)]" />
           </motion.div>
 
           {/* cards: clustered at the centre, then spread out slowly — and stay */}
@@ -132,7 +132,7 @@ function MobileStage() {
           className="relative mx-auto my-10 w-full max-w-[16rem]"
         >
           <div className="pointer-events-none absolute left-1/2 top-1/2 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-caramel/20 blur-[70px]" />
-          <img src="/img/newsinglebrew.png" alt="Necta Coffee — Silver Bean single origin" className="relative z-10 mx-auto w-full drop-shadow-[0_40px_70px_rgba(0,0,0,0.6)]" />
+          <img src={bean} alt="Necta Coffee — Silver Bean single origin" className="relative z-10 mx-auto w-full drop-shadow-[0_40px_70px_rgba(0,0,0,0.6)]" />
         </motion.div>
 
         <div className="flex flex-col gap-3">

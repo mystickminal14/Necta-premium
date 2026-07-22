@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Leaf, Coffee, HeartHandshake } from "lucide-react";
+import hand from "../assets/handheld.jpeg";
+import bag from "../assets/coffe.jpg";
 
 const VALUES = [
   { icon: <Leaf className="h-4 w-4" />, label: "Ethically Sourced" },
@@ -30,7 +32,7 @@ export default function About() {
         >
           <div className="overflow-hidden rounded-[2rem] shadow-[0_40px_90px_-30px_rgba(0,0,0,0.85)]">
             <img
-              src="/img/bag-editorial.jpg"
+              src={bag}
               alt="Necta Coffee — editorial"
               className="aspect-[4/5] w-full object-cover"
             />
@@ -39,7 +41,7 @@ export default function About() {
           {/* overlapping secondary image */}
           <div className="absolute -bottom-8 -right-5 w-40 overflow-hidden rounded-2xl border-4 border-espresso shadow-2xl sm:w-48">
             <img
-              src="/img/green-beans.png"
+              src={hand}
               alt="Fresh coffee beans"
               className="aspect-square w-full object-cover"
             />

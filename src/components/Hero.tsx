@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
 import ScatterBeans from "./ScatterBeans";
+import hero from "../assets/nectta.png";
 
 const STATS: [string, string][] = [
   ["10+", "Nepali Farms"],
@@ -137,7 +138,7 @@ export default function Hero() {
           {/* soft halo */}
           <div className="absolute left-1/2 top-1/2 -z-0 h-[85%] w-[85%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-caramel/25 blur-3xl" />
           <motion.img
-            src="/img/pouches-cutout.png"
+            src={hero}
             alt="Necta Coffee pouches"
             animate={{ y: [0, -16, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -145,11 +146,11 @@ export default function Hero() {
           />
 
           {/* floating chips */}
-          <div className="absolute right-2 top-6 z-[2] hidden rounded-2xl border border-espresso/10 bg-cream/70 px-4 py-3 shadow-lg backdrop-blur-md sm:right-6 sm:block">
-            <p className="text-[0.6rem] uppercase tracking-[0.18em] text-caramel">Available Now</p>
-            <p className="text-sm font-bold text-espresso">Simcoe · Silver Bean</p>
+          <div className="absolute right-[12%] top-16 z-[2] hidden rounded-2xl border border-espresso/10 bg-cream/70 px-4 py-3 shadow-lg backdrop-blur-md sm:block">
+            <p className="text-[0.6rem] uppercase tracking-[0.18em] text-caramel">100% Arabica</p>
+            <p className="text-sm font-bold text-espresso">High-Altitude Beans</p>
           </div>
-          <div className="absolute bottom-8 left-0 z-[2] hidden rounded-2xl border border-espresso/10 bg-cream/70 px-4 py-3 shadow-lg backdrop-blur-md sm:block">
+          <div className="absolute bottom-16 left-[22%] z-[2] hidden rounded-2xl border border-espresso/10 bg-cream/70 px-4 py-3 shadow-lg backdrop-blur-md sm:block">
             <p className="text-[0.6rem] uppercase tracking-[0.18em] text-caramel">Roasted Weekly</p>
             <p className="text-sm font-bold text-espresso">Always Fresh</p>
           </div>
