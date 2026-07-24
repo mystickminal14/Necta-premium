@@ -6,25 +6,98 @@ import Process from "../components/Process";
 import Faq from "../components/Faq";
 import type { QA } from "../components/Faq";
 
-interface Product {
-  name: string;
+interface Pack {
+  size: string;
   price: string;
-  tag?: string;
-  blurb: string;
-  img?: string;   // image
-  cover?: boolean; // true = full-bleed photo, false = padded cutout
 }
 
-const BEANS: Product[] = [
-  { name: "Silver Bean — Single Origin", price: "Rs 850", tag: "Bestseller", blurb: "100% Arabica, fully washed, light roast. 250g.", img: "/img/newsinglebrew.png" },
-  { name: "Simcoe Reserve", price: "Rs 1,200", tag: "Premium", blurb: "Top screen-size lot with a bright, floral cup. 250g.", img: "/img/pouch-front.png" },
-  { name: "Dark Roast House", price: "Rs 950", blurb: "Bold, full-bodied and chocolatey. Great with milk. 250g.", img: "/img/pouch-dark.png" },
-  { name: "Everyday Blend", price: "Rs 800", blurb: "Smooth, balanced and dependable — your daily cup. 250g.", img: "/img/pouches-cutout.png" },
+interface Product {
+  name: string;
+  roast?: string;      // available roast profile
+  prices?: Pack[];     // tiered pack pricing (beans)
+  price?: string;      // single price (machines)
+  tag?: string;
+  blurb: string;
+  img?: string;        // image
+  cover?: boolean;     // true = full-bleed photo, false = padded cutout
+}
+
+// A — Premium Segment
+const PREMIUM: Product[] = [
+  {
+    name: "Speciality Coffee",
+    roast: "City · City Plus · Full City · Full City Plus",
+    tag: "Speciality",
+    blurb: "Our finest graded lots, cupped for clarity and character. Choose the roast profile that suits your palate.",
+    prices: [
+      { size: "1 kg", price: "Rs 3,500" },
+      { size: "500 g", price: "Rs 1,850" },
+      { size: "250 g", price: "Rs 1,000" },
+    ],
+    img: "/img/pouch-front.png",
+  },
+  {
+    name: "House Blend",
+    roast: "City · City Plus · Full City · Full City Plus",
+    tag: "Signature",
+    blurb: "A balanced signature blend built for everyday brewing, roasted to your preferred profile.",
+    prices: [
+      { size: "1 kg", price: "Rs 3,200" },
+      { size: "500 g", price: "Rs 1,700" },
+      { size: "250 g", price: "Rs 900" },
+    ],
+    img: "/img/newsinglebrew.png",
+  },
 ];
 
+// B — Commercial Beans
+const COMMERCIAL: Product[] = [
+  {
+    name: "Necta Special",
+    roast: "Medium · Medium Dark",
+    tag: "Flagship",
+    blurb: "Our flagship commercial roast — rich, rounded and dialled in for cafés and busy kitchens.",
+    prices: [
+      { size: "1 kg", price: "Rs 3,000" },
+      { size: "500 g", price: "Rs 1,600" },
+      { size: "250 g", price: "Rs 850" },
+    ],
+    img: "/img/pouches-cutout.png",
+  },
+  {
+    name: "Valley Classic",
+    roast: "Medium · Medium Dark",
+    blurb: "A dependable medium roast with a smooth, classic cup that keeps regulars coming back.",
+    prices: [
+      { size: "1 kg", price: "Rs 2,800" },
+      { size: "500 g", price: "Rs 1,500" },
+      { size: "250 g", price: "Rs 800" },
+    ],
+    img: "/img/pouches-table.png",
+  },
+  {
+    name: "Peak Strong",
+    roast: "Medium · Medium Dark",
+    blurb: "Bold and full-bodied with a strong finish — made for milk drinks and big flavour.",
+    prices: [
+      { size: "1 kg", price: "Rs 2,600" },
+      { size: "500 g", price: "Rs 1,350" },
+      { size: "250 g", price: "Rs 700" },
+    ],
+    img: "/img/pouch-dark.png",
+  },
+];
+
+// Espresso Machines
 const MACHINES: Product[] = [
-  { name: "Necta Classic Espresso", price: "Rs 28,000", tag: "New", blurb: "Single-boiler 15-bar machine. Café-quality shots at home.", img: "/img/espresso-3.jpg", cover: true },
-  { name: "Necta Pro Dual Boiler", price: "Rs 65,000", tag: "Pro", blurb: "Dual boiler, PID control and pre-infusion for the perfectionist.", img: "/img/espresso-2.jpg", cover: true },
+  {
+    name: "Brugnetti Luna Espresso Machine",
+    price: "Rs 650,000",
+    tag: "Commercial",
+    blurb: "A complete commercial setup — the Brugnetti Luna espresso machine paired with the Mito Base Compact.",
+    img: "/img/espresso-3.jpg",
+    cover: true,
+  },
 ];
 
 const FAQS: QA[] = [
@@ -63,13 +136,34 @@ function ProductCard({ p, i }: { p: Product; i: number }) {
 
       <div className="flex flex-1 flex-col p-5">
         <h3 className="text-base font-bold leading-tight text-espresso">{p.name}</h3>
+        {p.roast && (
+          <p className="mt-1.5 text-[0.7rem] font-semibold uppercase tracking-wide text-caramel">{p.roast}</p>
+        )}
         <p className="mt-2 flex-1 text-sm text-espresso/60">{p.blurb}</p>
-        <div className="mt-4 flex items-center justify-between border-t border-espresso/10 pt-4">
-          <span className="text-lg font-bold text-espresso">{p.price}</span>
-          <Link to="/contact" className="inline-flex items-center gap-1 text-sm font-semibold text-caramel transition-colors hover:text-espresso">
-            Enquire <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
+
+        {p.prices ? (
+          <div className="mt-4 space-y-1.5 border-t border-espresso/10 pt-4">
+            {p.prices.map((pk) => (
+              <div key={pk.size} className="flex items-center justify-between text-sm">
+                <span className="text-espresso/55">{pk.size}</span>
+                <span className="font-bold text-espresso">{pk.price}</span>
+              </div>
+            ))}
+            <Link
+              to="/contact"
+              className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-caramel transition-colors hover:text-espresso"
+            >
+              Enquire <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        ) : (
+          <div className="mt-4 flex items-center justify-between border-t border-espresso/10 pt-4">
+            <span className="text-lg font-bold text-espresso">{p.price}</span>
+            <Link to="/contact" className="inline-flex items-center gap-1 text-sm font-semibold text-caramel transition-colors hover:text-espresso">
+              Enquire <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        )}
       </div>
     </motion.div>
   );
@@ -102,13 +196,14 @@ export default function ProductPage() {
         eyebrow="shop necta"
         title="Beans &"
         highlight="Espresso Machines."
-        subtitle="What we do best — single-origin Nepali coffee, small-batch roasted, and the espresso machines to brew it just right. Simple, honest, and made for everyday coffee lovers."
+        subtitle="What we do best — premium and everyday Nepali coffee, small-batch roasted, in 1 kg, 500 g and 250 g packs — plus the espresso machines to brew it just right."
       />
 
       <section className="relative overflow-hidden bg-cream py-16 sm:py-24">
         <div className="grain absolute inset-0" />
         <div className="relative mx-auto max-w-7xl space-y-20 px-5 sm:px-8">
-          <Group eyebrow="freshly roasted" title="Coffee Beans" items={BEANS} cols="lg:grid-cols-4" />
+          <Group eyebrow="premium segment" title="Speciality & House Blend" items={PREMIUM} cols="lg:grid-cols-2" />
+          <Group eyebrow="everyday commercial" title="Commercial Beans" items={COMMERCIAL} cols="lg:grid-cols-3" />
           <Group eyebrow="pull the perfect shot" title="Espresso Machines" items={MACHINES} cols="lg:grid-cols-2 lg:max-w-3xl" />
         </div>
       </section>
