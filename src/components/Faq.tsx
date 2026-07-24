@@ -10,11 +10,13 @@ export default function Faq({
   eyebrow = "good to know",
   title = "Frequently Asked",
   highlight = "Questions",
+  image = "/img/bag-editorial.jpg",
 }: {
   items: QA[];
   eyebrow?: string;
   title?: string;
   highlight?: string;
+  image?: string;
 }) {
   const [open, setOpen] = useState<number | null>(0);
 
@@ -30,7 +32,7 @@ export default function Faq({
         <div className="lg:sticky lg:top-28 lg:self-start">
           <div className="relative overflow-hidden rounded-[2rem] shadow-[0_30px_70px_-30px_rgba(36,19,8,0.6)]">
             <img
-              src="/img/bag-editorial.jpg"
+              src={image}
               alt="Necta Coffee"
               className="h-72 w-full object-cover sm:h-80 lg:h-[30rem]"
             />

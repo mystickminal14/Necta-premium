@@ -76,7 +76,7 @@ export default function Footer() {
               Handpicked from Nepal&apos;s finest farms. Small-batch roasted, delivered fresh.
             </p>
             <div className="mt-5 flex gap-3">
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="grid h-9 w-9 place-items-center rounded-full bg-cream/10 transition-colors hover:bg-caramel hover:text-espresso">
+              <a href="https://www.instagram.com/nectacoffeepvt.ltd/" target="_blank" rel="noreferrer" className="grid h-9 w-9 place-items-center rounded-full bg-cream/10 transition-colors hover:bg-caramel hover:text-espresso">
                 <Instagram className="h-4 w-4" />
               </a>
               <a href="mailto:nectacoffeept@gmail.com" className="grid h-9 w-9 place-items-center rounded-full bg-cream/10 transition-colors hover:bg-caramel hover:text-espresso">
@@ -127,7 +127,7 @@ export default function Footer() {
       <div className="relative border-t border-cream/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-6 text-xs text-cream/40 sm:flex-row sm:px-8">
           <p>© {new Date().getFullYear()} Necta Coffee · Grown in Nepal · Est. 2020</p>
-          <a href="https://instagram.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 transition-colors hover:text-cream">
+          <a href="https://www.instagram.com/nectacoffeepvt.ltd/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 transition-colors hover:text-cream">
             Follow our journey <ArrowUpRight className="h-3.5 w-3.5" />
           </a>
         </div>
