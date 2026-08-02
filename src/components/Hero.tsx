@@ -140,16 +140,6 @@ Trusted by cafés across Nepal, our coffee is sourced through long-term relation
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             className="relative z-[1] mx-auto w-[122%] max-w-none drop-shadow-[0_50px_80px_rgba(36,19,8,0.45)] sm:w-full sm:max-w-xl lg:w-[135%] lg:max-w-none lg:translate-x-[4%]"
           />
-
-          {/* floating chips */}
-          <div className="absolute right-[12%] top-16 z-[2] hidden rounded-2xl border border-espresso/10 bg-cream/70 px-4 py-3 shadow-lg backdrop-blur-md sm:block">
-            <p className="text-[0.6rem] uppercase tracking-[0.18em] text-caramel">100% Arabica</p>
-            <p className="text-sm font-bold text-espresso">High-Altitude Beans</p>
-          </div>
-          <div className="absolute bottom-16 left-[22%] z-[2] hidden rounded-2xl border border-espresso/10 bg-cream/70 px-4 py-3 shadow-lg backdrop-blur-md sm:block">
-            <p className="text-[0.6rem] uppercase tracking-[0.18em] text-caramel">Roasted Weekly</p>
-            <p className="text-sm font-bold text-espresso">Always Fresh</p>
-          </div>
         </motion.div>
       </div>
     </section>

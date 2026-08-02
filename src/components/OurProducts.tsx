@@ -1,0 +1,124 @@
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
+
+/* ------------------------------------------------------------------ *
+ * Three vertical cards. Swap `img` for the client's own shots when they
+ * land — the aspect ratio is fixed by the card, so any portrait crop works.
+ * ------------------------------------------------------------------ */
+
+interface Item {
+  name: string;
+  blurb: string;
+  img: string;
+}
+
+const ITEMS: Item[] = [
+  {
+    name: "Blend",
+    blurb: "Balanced and consistent — built for espresso and milk drinks, cup after cup.",
+    img: "/img/necta-house.jpg",
+  },
+  {
+    name: "Single Origin",
+    blurb: "Traceable Nepali lots with the character of one farm, one harvest.",
+    img: "/img/necta-speciality.jpg",
+  },
+  {
+    name: "Cold Brew",
+    blurb: "Slow-steeped and smooth, with a low-acid finish made for serving over ice.",
+    img: "/img/necta-latte.jpg",
+  },
+];
+
+const EASE = [0.16, 1, 0.3, 1] as const;
+
+function ProductCard({ item, i }: { item: Item; i: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 26 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{ duration: 0.7, delay: i * 0.1, ease: EASE }}
+    >
+      <Link
+        to="/product"
+        aria-label={`See our ${item.name} coffee`}
+        className="group relative block overflow-hidden rounded-2xl border border-espresso/10 shadow-[0_20px_50px_-32px_rgba(36,19,8,0.7)] transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-caramel/40 hover:shadow-[0_34px_60px_-30px_rgba(36,19,8,0.65)] sm:rounded-[1.75rem]"
+      >
+        <div className="relative aspect-[3/4] overflow-hidden bg-cream-3">
+          <img
+            src={item.img}
+            alt={item.name}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.07]"
+          />
+
+          {/* text sits on the photo — the scrim keeps it readable on any crop */}
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-espresso via-espresso/70 to-transparent px-4 pb-4 pt-20 sm:px-5 sm:pb-5 sm:pt-24">
+            <div className="flex items-end justify-between gap-3">
+              <div className="min-w-0">
+                <h3 className="text-lg font-bold leading-tight text-cream sm:text-xl">{item.name}</h3>
+                {/* blurb stays folded away until hover on pointer devices, and is
+                    always visible on touch where there is no hover to discover */}
+                <p className="mt-1.5 text-[0.8rem] leading-relaxed text-cream/70 sm:mt-2 sm:max-h-0 sm:overflow-hidden sm:opacity-0 sm:transition-all sm:duration-500 sm:ease-[cubic-bezier(0.16,1,0.3,1)] sm:group-hover:max-h-24 sm:group-hover:opacity-100">
+                  {item.blurb}
+                </p>
+              </div>
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-caramel text-espresso transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-45 sm:h-10 sm:w-10">
+                <ArrowUpRight className="h-4 w-4 sm:h-[1.1rem] sm:w-[1.1rem]" />
+              </span>
+            </div>
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
+
+export default function OurProducts() {
+  return (
+    <section id="products" className="relative z-30 overflow-hidden bg-cream py-16 sm:py-20 md:py-28">
+      <div className="grain absolute inset-0" />
+
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="font-hand text-2xl text-caramel sm:text-3xl"
+          >
+            roasted in nepal
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.8, ease: EASE }}
+            className="mt-2 text-[clamp(1.75rem,5.6vw,3.4rem)] font-semibold leading-tight text-espresso"
+          >
+            Our <span className="text-caramel">Products</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="mx-auto mt-4 max-w-xl text-[0.95rem] leading-relaxed text-espresso/60 sm:text-base"
+          >
+            Three ways to serve Necta — each roasted in small batches and packed
+            fresh for the counter it ends up on.
+          </motion.p>
+        </div>
+
+        <div className="mt-10 grid grid-cols-1 gap-5 min-[560px]:grid-cols-2 sm:mt-12 lg:grid-cols-3 lg:gap-6">
+          {ITEMS.map((item, i) => (
+            <ProductCard key={item.name} item={item} i={i} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

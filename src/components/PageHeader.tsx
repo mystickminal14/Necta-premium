@@ -19,7 +19,7 @@ const BEANS: { top: string; left?: string; right?: string; w: number; rot: numbe
 
 export default function PageHeader({ eyebrow, title, highlight, subtitle, crumb }: Props) {
   return (
-    <section className="relative overflow-hidden bg-[radial-gradient(130%_120%_at_78%_-10%,#3a2416_0%,#2a1810_45%,#1a0d06_100%)] px-5 pb-16 pt-36 text-cream sm:px-8 sm:pb-20 sm:pt-40">
+    <section className="relative overflow-hidden bg-[radial-gradient(130%_120%_at_78%_-10%,#3a2416_0%,#2a1810_45%,#1a0d06_100%)] px-4 pb-16 pt-32 text-cream sm:px-8 sm:pb-20 sm:pt-40">
       <div className="absolute inset-0 bg-cover bg-center opacity-[0.07] mix-blend-luminosity" style={{ backgroundImage: "url('/img/beans-texture.jpg')" }} />
       <div className="grain absolute inset-0" />
 
@@ -54,10 +54,10 @@ export default function PageHeader({ eyebrow, title, highlight, subtitle, crumb 
         <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.05 }} className="font-hand text-2xl text-caramel-light sm:text-3xl">
           {eyebrow}
         </motion.p>
-        <motion.h1 initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }} className="mt-2 text-[clamp(2.4rem,6vw,4.4rem)] font-bold leading-[1.04] tracking-tight">
+        <motion.h1 initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }} className="mt-2 text-[clamp(1.9rem,7vw,4.4rem)] font-bold leading-[1.04] tracking-tight">
           {title} <span className="text-caramel-light">{highlight}</span>
         </motion.h1>
-        <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-cream/65 sm:text-lg">
+        <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="mx-auto mt-5 max-w-xl text-[0.95rem] leading-relaxed text-cream/65 sm:text-lg">
           {subtitle}
         </motion.p>
       </div>
