@@ -50,7 +50,16 @@ export default function OurStory() {
 
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }} className="mt-10 grid grid-cols-3 border-t border-cream/10 pt-7">
             {STATS.map(([n, l], i) => (
-              <div key={l} className={i < 2 ? "border-r border-cream/10 pr-4" : "pl-4"}>
+              <div
+                key={l}
+                className={
+                  i === 0
+                    ? "border-r border-cream/10 pr-4"
+                    : i === STATS.length - 1
+                      ? "pl-4"
+                      : "border-r border-cream/10 px-4"
+                }
+              >
                 <div className="text-[clamp(1.4rem,2.5vw,2rem)] font-bold leading-none text-caramel-light">{n}</div>
                 <div className="mt-2 text-[0.65rem] uppercase tracking-[0.12em] text-cream/45">{l}</div>
               </div>

@@ -327,7 +327,7 @@ const Heading = () => (
       transition={{ duration: 0.7, ease: EASE }}
       className="mt-1 text-[clamp(1.5rem,5.4vw,3.2rem)] font-bold leading-tight text-cream"
     >
-      Everything You Need <span className="text-caramel-light">For Your Café</span>
+      Everything You Need <br/><span className="text-caramel-light">For Your Café</span>
     </motion.h2>
   </div>
 );

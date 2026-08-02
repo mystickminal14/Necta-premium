@@ -1,6 +1,8 @@
 import ScatterBeans from "./ScatterBeans";
 
 const WORDS = [
+  "Nepal Origin",
+
   "Freshly Roasted",
   "Single Origin",
   "Small Batch",

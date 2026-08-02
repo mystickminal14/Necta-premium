@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
 import ScatterBeans from "./ScatterBeans";
-import hero from "../assets/nectta.png";
+import heroLineup from "../assets/home-page addition.png";
 
 const STATS: [string, string][] = [
   ["10+", "Farmers"],
@@ -41,9 +41,9 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 lg:grid-cols-[0.95fr_1.25fr]">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-end gap-10 lg:grid-cols-[0.75fr_1.25fr]">
         {/* LEFT — copy */}
-        <div className="max-w-xl">
+        <div className="max-w-lg">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -71,7 +71,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-2 text-[clamp(2.8rem,7vw,5.5rem)] font-bold leading-[1.05] tracking-tight text-espresso"
+            className="mt-2 text-[clamp(2.6rem,6vw,4.8rem)] font-bold leading-[1.05] tracking-tight text-espresso"
           >
             Quality You
             <br />
@@ -89,7 +89,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mt-6 max-w-md text-base leading-relaxed text-espresso/70 sm:text-lg"
+            className="mt-6 max-w-lg text-base leading-relaxed text-espresso/70 sm:text-lg"
           >
 Trusted by cafés across Nepal, our coffee is sourced through long-term relationships with skilled farmers and producers who share our commitment to quality. Every batch is processed and roasted with precision to ensure a consistent cup profile that meets professional café standards.          </motion.p>
 
@@ -113,10 +113,19 @@ Trusted by cafés across Nepal, our coffee is sourced through long-term relation
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-10 hidden max-w-md grid-cols-3 gap-4 border-t border-espresso/10 pt-6 sm:grid"
+            className="mt-10 hidden max-w-md grid-cols-3 border-t border-espresso/10 pt-6 sm:grid"
           >
-            {STATS.map(([n, l]) => (
-              <div key={l}>
+            {STATS.map(([n, l], i) => (
+              <div
+                key={l}
+                className={
+                  i === 0
+                    ? "border-r border-espresso/10 pr-4"
+                    : i === STATS.length - 1
+                      ? "pl-4"
+                      : "border-r border-espresso/10 px-4"
+                }
+              >
                 <div className="text-2xl font-bold leading-none text-espresso sm:text-3xl">{n}</div>
                 <div className="mt-1.5 text-[0.7rem] uppercase tracking-[0.12em] text-espresso/50">{l}</div>
               </div>
@@ -124,21 +133,19 @@ Trusted by cafés across Nepal, our coffee is sourced through long-term relation
           </motion.div>
         </div>
 
-        {/* RIGHT — product pouches (bigger, no NECTA text) */}
+        {/* RIGHT — full product lineup */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, x: 30 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
           transition={{ duration: 1.1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className="relative"
         >
-          {/* soft halo */}
-          <div className="absolute left-1/2 top-1/2 -z-0 h-[85%] w-[85%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-caramel/25 blur-3xl" />
           <motion.img
-            src={hero}
-            alt="Necta Coffee pouches"
-            animate={{ y: [0, -16, 0] }}
+            src={heroLineup}
+            alt="The full Necta Coffee lineup — four signature roasts"
+            animate={{ y: [0, -10, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="relative z-[1] mx-auto w-[122%] max-w-none drop-shadow-[0_50px_80px_rgba(36,19,8,0.45)] sm:w-full sm:max-w-xl lg:w-[135%] lg:max-w-none lg:translate-x-[4%]"
+            className="relative z-[1] mx-auto w-full max-w-none object-contain sm:w-full sm:max-w-4xl lg:w-full"
           />
         </motion.div>
       </div>
