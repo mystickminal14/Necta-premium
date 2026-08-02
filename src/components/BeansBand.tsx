@@ -9,10 +9,7 @@ const WORDS = [
   "Fully Washed",
 ];
 
-/**
- * An elegant scrolling marquee band (replaces the old photo band) — solid
- * espresso, little beans scattered, brand keywords gliding past with bean dots.
- */
+
 export default function BeansBand() {
   const row = [...WORDS, ...WORDS];
   return (
@@ -20,7 +17,7 @@ export default function BeansBand() {
       <ScatterBeans count={10} />
 
       <div className="relative mb-8 text-center">
-        <p className="font-hand text-3xl text-caramel-light sm:text-4xl">a taste you can trust</p>
+        <p className="font-hand text-3xl text-caramel-light sm:text-4xl">Our Value Chain</p>
       </div>
 
       {/* marquee */}

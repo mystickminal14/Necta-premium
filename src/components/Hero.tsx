@@ -5,9 +5,9 @@ import ScatterBeans from "./ScatterBeans";
 import hero from "../assets/nectta.png";
 
 const STATS: [string, string][] = [
-  ["10+", "Nepali Farms"],
-  ["100%", "Single Origin"],
-  ["48hr", "Farm to Roast"],
+  ["10+", "Farmers"],
+  ["100%", "Quality Control"],
+  ["365 days", "consistency"],
 ];
 
 // photographic bean cutouts that "touch up" the hero
@@ -55,7 +55,7 @@ export default function Hero() {
                 <Star key={i} className="h-3.5 w-3.5 fill-caramel text-caramel" />
               ))}
             </span>
-            Loved by coffee lovers across Nepal
+            Loved By Every Coffee Shop across Nepal
           </motion.div>
 
           <motion.p
@@ -91,11 +91,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mt-6 max-w-md text-base leading-relaxed text-espresso/70 sm:text-lg"
           >
-            Handpicked from Nepal&apos;s finest farms and small-batch roasted in
-            our own roastery. From the volcanic highlands of Melamchi to the cup
-            in your hands — fresh, traceable, and crafted with care for people
-            who truly love coffee.
-          </motion.p>
+Trusted by cafés across Nepal, our coffee is sourced through long-term relationships with skilled farmers and producers who share our commitment to quality. Every batch is processed and roasted with precision to ensure a consistent cup profile that meets professional café standards.          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -104,11 +100,11 @@ export default function Hero() {
             className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4"
           >
             <Link to="/product" className="group inline-flex items-center gap-2 rounded-full bg-espresso px-7 py-3.5 text-sm font-semibold text-cream shadow-[0_12px_30px_-10px_rgba(36,19,8,0.6)] transition-all duration-300 hover:scale-[1.03] hover:bg-espresso-2 sm:text-base">
-              Shop Our Beans
+              Become our Dealer
               <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </Link>
             <Link to="/contact" className="inline-flex items-center rounded-full border border-espresso/25 px-7 py-3.5 text-sm font-semibold text-espresso transition-all duration-300 hover:border-espresso hover:bg-espresso/5 sm:text-base">
-              Talk to us
+              Order for your cafe
             </Link>
           </motion.div>
 

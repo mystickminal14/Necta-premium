@@ -60,18 +60,18 @@ export default function About() {
             about us
           </motion.p>
           <motion.h2 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="mt-2 text-[clamp(2.2rem,4.6vw,3.8rem)] font-bold leading-[1.05] tracking-tight text-cream">
-            A small roastery, <br className="hidden sm:block" />a <span className="text-caramel-light">big</span> love for coffee.
+            Right choice, for<br className="hidden sm:block" />your <span className="text-caramel-light">coffee</span> shop.
           </motion.h2>
 
           <motion.p initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }} className="mt-6 max-w-md text-lg leading-relaxed text-cream/70">
-            Necta Coffee works hand-in-hand with farmers across Nepal&apos;s
-            highlands — selecting only the ripest cherries and roasting them in
-            small batches, so every cup tastes the way it should.
+            At Necta Coffee, we are comitted to helping cafes serve exceptinal coffee with confidence. Every bean is carefully sourced from experienced Nepali farmers and producers, thoughtfully processed, and precision roasted to achieve a consistent cup profile that meets professional cafe standards.
           </motion.p>
           <motion.p initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.18 }} className="mt-3 max-w-md text-base leading-relaxed text-cream/50">
-            No shortcuts, no mass roasting. Just honest coffee, delivered fresh.
+            Our focus extends far beyond roasting. We work closely throughout every stage- from cherry selection and processiong to roast development and quality control - to ensure every cup delivers the flavor, consistency, and reliability your customers expect.
           </motion.p>
-
+          <motion.p initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.18 }} className="mt-3 max-w-md text-base leading-relaxed text-cream/50">
+            Behind every bag of Necta Coffee is a commitment to quality, consistency, and long-term partnership, giving your cafe the foundation, to build a memorable coffee experience and strengthen your brand with every cup served.
+          </motion.p>
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.26 }} className="mt-8 flex flex-wrap gap-2.5">
             {VALUES.map((v) => (
               <span key={v.label} className="inline-flex items-center gap-2 rounded-full border border-cream/20 bg-cream/5 px-4 py-2 text-sm font-medium text-cream/90 backdrop-blur-sm">

@@ -46,7 +46,7 @@ const Heading = () => (
       why choose us
     </motion.p>
     <motion.h2 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }} className="mt-1 text-[clamp(1.9rem,4.4vw,3.2rem)] font-bold text-cream">
-      Every Bean, Carefully <span className="text-caramel-light">Chosen</span>
+      Everything you need for your <span className="text-caramel-light">c afe</span>
     </motion.h2>
   </div>
 );
