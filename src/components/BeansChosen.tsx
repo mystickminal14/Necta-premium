@@ -318,8 +318,7 @@ const Heading = () => (
       transition={{ duration: 0.6 }}
       className="font-hand text-2xl text-caramel-light sm:text-3xl"
     >
-      your roast, your way
-    </motion.p>
+Choose Your Roast    </motion.p>
     <motion.h2
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}

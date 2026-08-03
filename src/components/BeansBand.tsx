@@ -1,15 +1,12 @@
 import ScatterBeans from "./ScatterBeans";
 
 const WORDS = [
-  "Nepal Origin",
-
-  "Freshly Roasted",
-  "Single Origin",
-  "Small Batch",
-  "Handpicked",
-  "Nepal Grown",
-  "Fully Washed",
-];
+  "Quality Coffee",
+  "Best For Your Coffee Shop",
+  "Consistency",
+  "Singly Origin",
+  "Commercial Blend",
+  ];
 
 
 export default function BeansBand() {
@@ -19,7 +16,7 @@ export default function BeansBand() {
       <ScatterBeans count={10} />
 
       <div className="relative mb-8 text-center">
-        <p className="font-hand text-3xl text-caramel-light sm:text-4xl">Our Value Chain</p>
+        <p className="font-hand text-3xl text-caramel-light sm:text-4xl">Why Choose Us?</p>
       </div>
 
       {/* marquee */}

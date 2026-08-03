@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
 import ScatterBeans from "./ScatterBeans";
-import heroLineup from "../assets/home-page addition.png";
+import hero from "../assets/nectta.png";
 
 const STATS: [string, string][] = [
   ["10+", "Farmers"],
@@ -41,7 +41,7 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-end gap-10 lg:grid-cols-[0.75fr_1.25fr]">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 lg:grid-cols-[0.95fr_1.25fr]">
         {/* LEFT — copy */}
         <div className="max-w-lg">
           <motion.div
@@ -133,19 +133,21 @@ Trusted by cafés across Nepal, our coffee is sourced through long-term relation
           </motion.div>
         </div>
 
-        {/* RIGHT — full product lineup */}
+        {/* RIGHT — product pouches (bigger, no NECTA text) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, x: 30 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
           transition={{ duration: 1.1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className="relative"
         >
+          {/* soft halo */}
+          <div className="absolute left-1/2 top-1/2 -z-0 h-[85%] w-[85%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-caramel/25 blur-3xl" />
           <motion.img
-            src={heroLineup}
-            alt="The full Necta Coffee lineup — four signature roasts"
-            animate={{ y: [0, -10, 0] }}
+            src={hero}
+            alt="Necta Coffee pouches"
+            animate={{ y: [0, -16, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="relative z-[1] mx-auto w-full max-w-none object-contain sm:w-full sm:max-w-4xl lg:w-full"
+            className="relative z-[1] mx-auto w-[122%] max-w-none drop-shadow-[0_50px_80px_rgba(36,19,8,0.45)] sm:w-full sm:max-w-xl lg:w-[135%] lg:max-w-none lg:translate-x-[4%]"
           />
         </motion.div>
       </div>
