@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
+import espresso from "../assets/espresso.jpg";
+import v60 from "../assets/v60.jpg";
+import coldbrew from "../assets/coldbrew.jpeg";
 
 /* ------------------------------------------------------------------ *
  * Three vertical cards. Swap `img` for the client's own shots when they
@@ -17,17 +20,17 @@ const ITEMS: Item[] = [
   {
     name: "Blend",
     blurb: "Balanced and consistent — built for espresso and milk drinks, cup after cup.",
-    img: "/img/necta-house.jpg",
+    img: espresso,
   },
   {
     name: "Single Origin",
     blurb: "Traceable Nepali lots with the character of one farm, one harvest.",
-    img: "/img/necta-speciality.jpg",
+    img: v60,
   },
   {
     name: "Cold Brew",
     blurb: "Slow-steeped and smooth, with a low-acid finish made for serving over ice.",
-    img: "/img/necta-latte.jpg",
+    img: coldbrew,
   },
 ];
 
@@ -81,7 +84,7 @@ export default function OurProducts() {
     <section id="products" className="relative z-30 overflow-hidden bg-cream py-16 sm:py-20 md:py-28">
       <div className="grain absolute inset-0" />
 
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <motion.p
             initial={{ opacity: 0, y: 16 }}

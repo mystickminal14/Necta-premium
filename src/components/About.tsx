@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { Leaf, Coffee, HeartHandshake } from "lucide-react";
-import hand from "../assets/handheld.jpeg";
-import bag from "../assets/coffe.jpg";
+import bag from "../assets/IMG_0743.jpg";
+import  hand from "../assets/handheld.jpeg";
+import beansTexture from "../assets/beans-texture.jpg";
 
 const VALUES = [
   { icon: <Leaf className="h-4 w-4" />, label: "Ethically Sourced" },
@@ -17,7 +18,7 @@ export default function About() {
     >
       <div
         className="absolute inset-0 bg-cover bg-center opacity-[0.06] mix-blend-luminosity"
-        style={{ backgroundImage: "url('/img/beans-texture.jpg')" }}
+        style={{ backgroundImage: `url(${beansTexture})` }}
       />
       <div className="grain absolute inset-0" />
 

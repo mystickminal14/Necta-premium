@@ -6,15 +6,15 @@ import Faq from "../components/Faq";
 import type { QA } from "../components/Faq";
 
 const INFO = [
-  { icon: <MapPin className="h-5 w-5" />, label: "Visit us", value: "Melamchi, Sindhupalchok, Nepal" },
+  { icon: <MapPin className="h-5 w-5" />, label: "Visit us", value: "Jhamsikhel 08, Lalitpur MNC, Nepal" },
   { icon: <Mail className="h-5 w-5" />, label: "Email us", value: "nectacoffeept@gmail.com", href: "mailto:nectacoffeept@gmail.com" },
-  { icon: <Phone className="h-5 w-5" />, label: "Call us", value: "+977 98-0000-0000", href: "tel:+9779800000000" },
+  { icon: <Phone className="h-5 w-5" />, label: "Call us", value: "+977 9849515304", href: "tel:+9779849515304" },
   { icon: <Clock className="h-5 w-5" />, label: "Roastery hours", value: "Sun–Fri · 9am – 6pm" },
 ];
 
 const FAQS: QA[] = [
   { q: "How quickly will you reply?", a: "We answer messages within one business day — usually much faster on Instagram DMs." },
-  { q: "Can I visit the roastery?", a: "Yes! Drop by during roastery hours in Melamchi. Message ahead so we can have a fresh cup waiting for you." },
+  { q: "Can I visit the roastery?", a: "Yes! Drop by during roastery hours in Jhamsikhel, Lalitpur. Message ahead so we can have a fresh cup waiting for you." },
   { q: "Do you supply cafés and offices in bulk?", a: "We do. Tell us your volume and preferred grade in the form and our wholesale team will send custom pricing." },
   { q: "Can I get a free sample?", a: "Absolutely — mention it in your message and we'll arrange a sample so you can taste before committing." },
 ];
@@ -102,8 +102,8 @@ export default function ContactPage() {
             className="relative min-h-[22rem] overflow-hidden rounded-[2rem] border border-espresso/10 shadow-[0_24px_60px_-30px_rgba(36,19,8,0.5)]"
           >
             <iframe
-              title="Necta Coffee — Melamchi, Nepal"
-              src="https://www.google.com/maps?q=Melamchi,Nepal&z=12&output=embed"
+              title="Necta Coffee — Jhamsikhel, Lalitpur, Nepal"
+              src="https://www.google.com/maps?q=Jhamsikhel+08,+Lalitpur+MNC,+Nepal&z=15&output=embed"
               className="absolute inset-0 h-full w-full"
               style={{ border: 0 }}
               loading="lazy"
@@ -112,7 +112,7 @@ export default function ContactPage() {
             {/* location badge */}
             <div className="pointer-events-none absolute bottom-4 left-4 rounded-2xl bg-espresso/90 px-4 py-3 text-cream shadow-xl backdrop-blur-sm">
               <p className="text-[0.6rem] uppercase tracking-[0.18em] text-caramel-light">Our roastery</p>
-              <p className="text-sm font-bold">Melamchi, Nepal</p>
+              <p className="text-sm font-bold">Jhamsikhel, Lalitpur</p>
             </div>
           </motion.div>
         </div>

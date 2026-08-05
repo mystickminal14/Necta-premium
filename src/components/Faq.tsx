@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Plus, HelpCircle, ArrowRight } from "lucide-react";
+import bagEditorial from "../assets/bag-editorial.jpg";
 
 export interface QA { q: string; a: string; }
 
@@ -10,7 +11,7 @@ export default function Faq({
   eyebrow = "good to know",
   title = "Frequently Asked",
   highlight = "Questions",
-  image = "/img/bag-editorial.jpg",
+  image = bagEditorial,
 }: {
   items: QA[];
   eyebrow?: string;

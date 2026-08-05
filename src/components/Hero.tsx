@@ -2,7 +2,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
 import ScatterBeans from "./ScatterBeans";
-import hero from "../assets/nectta.png";
+import hero from "../assets/converted_image.webp";
+import bean from "../assets/bean.png";
 
 const STATS: [string, string][] = [
   ["10+", "Farmers"],
@@ -11,11 +12,15 @@ const STATS: [string, string][] = [
 ];
 
 // photographic bean cutouts that "touch up" the hero
-const BEANS = [
+const BEANS: { top: string; left?: string; right?: string; w: number; rot: number; dur: number }[] = [
   { top: "12%", left: "6%", w: 54, rot: -18, dur: 8 },
   { top: "70%", left: "4%", w: 40, rot: 40, dur: 9 },
   { top: "82%", left: "42%", w: 34, rot: 120, dur: 7.5 },
   { top: "8%", left: "52%", w: 30, rot: 200, dur: 10 },
+  { top: "18%", right: "6%", w: 50, rot: 25, dur: 8.5 },
+  { top: "46%", right: "2%", w: 62, rot: -55, dur: 7 },
+  { top: "68%", right: "12%", w: 38, rot: 90, dur: 9.5 },
+  { top: "86%", right: "22%", w: 44, rot: -110, dur: 8 },
 ];
 
 export default function Hero() {
@@ -31,11 +36,11 @@ export default function Hero() {
         {BEANS.map((b, i) => (
           <motion.img
             key={i}
-            src="/img/bean.png"
+            src={bean}
             alt=""
             animate={{ y: [0, -14, 0], rotate: [b.rot, b.rot + 8, b.rot] }}
             transition={{ duration: b.dur, repeat: Infinity, ease: "easeInOut" }}
-            style={{ top: b.top, left: b.left, width: b.w }}
+            style={{ top: b.top, left: b.left, right: b.right, width: b.w }}
             className="absolute opacity-80 drop-shadow-[0_10px_20px_rgba(36,19,8,0.25)]"
           />
         ))}
@@ -147,7 +152,7 @@ Trusted by cafés across Nepal, our coffee is sourced through long-term relation
             alt="Necta Coffee pouches"
             animate={{ y: [0, -16, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="relative z-[1] mx-auto w-[122%] max-w-none drop-shadow-[0_50px_80px_rgba(36,19,8,0.45)] sm:w-full sm:max-w-xl lg:w-[135%] lg:max-w-none lg:translate-x-[4%]"
+            className="relative z-[1] mx-auto w-[90%] max-w-none sm:w-full sm:max-w-md lg:w-[100%] lg:max-w-none lg:translate-x-[4%]"
           />
         </motion.div>
       </div>

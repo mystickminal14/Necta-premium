@@ -16,6 +16,7 @@ import {
 import type { ReactNode } from "react";
 import ScatterBeans from "./ScatterBeans";
 import pouch from "../assets/necta-cofe-nags.png";
+import bean from "../assets/bean.png";
 
 /* ------------------------------------------------------------------ *
  * Data — one entry per roast. The packet artwork is shared; the band,
@@ -378,7 +379,7 @@ const Beans = () => (
     {BG_BEANS.map((b, i) => (
       <motion.img
         key={i}
-        src="/img/bean.png"
+        src={bean}
         alt=""
         animate={{ y: [0, -16, 0], rotate: [b.rot, b.rot + 8, b.rot] }}
         transition={{ duration: b.dur, repeat: Infinity, ease: "easeInOut" }}

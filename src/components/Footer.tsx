@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { MessageCircle, Mail, MapPin, ArrowUpRight, Send } from "lucide-react";
+import { MessageCircle, Mail, MapPin, Phone, ArrowUpRight, Send } from "lucide-react";
+import beansTexture from "../assets/beans-texture.jpg";
 
 function Instagram({ className = "" }: { className?: string }) {
   return (
@@ -25,7 +26,7 @@ export default function Footer() {
 
   return (
     <footer className="relative overflow-hidden bg-espresso-2 text-cream/70">
-      <div className="absolute inset-0 bg-cover bg-center opacity-[0.06]" style={{ backgroundImage: "url('/img/beans-texture.jpg')" }} />
+      <div className="absolute inset-0 bg-cover bg-center opacity-[0.06]" style={{ backgroundImage: `url(${beansTexture})` }} />
 
       {/* TOP — newsletter / CTA */}
       <div className="relative mx-auto max-w-7xl px-5 pt-16 sm:px-8 sm:pt-20">
@@ -107,10 +108,13 @@ export default function Footer() {
 
           <div>
             <p className="mb-3 text-xs uppercase tracking-[0.18em] text-caramel-light">Reach us</p>
-            <p className="flex items-center gap-2 text-sm"><MapPin className="h-4 w-4 text-caramel-light" /> Melamchi, Nepal</p>
+            <p className="flex items-center gap-2 text-sm"><MapPin className="h-4 w-4 text-caramel-light" /> Jhamsikhel, Lalitpur, Nepal</p>
             <p className="mt-2 flex items-center gap-2 text-sm"><MessageCircle className="h-4 w-4 text-caramel-light" /> DM for free sample</p>
             <a href="mailto:nectacoffeept@gmail.com" className="mt-2 flex items-center gap-2 text-sm transition-colors hover:text-cream">
               <Mail className="h-4 w-4 text-caramel-light" /> nectacoffeept@gmail.com
+            </a>
+            <a href="tel:+9779849515304" className="mt-2 flex items-center gap-2 text-sm transition-colors hover:text-cream">
+              <Phone className="h-4 w-4 text-caramel-light" /> +977 9849515304
             </a>
           </div>
         </div>

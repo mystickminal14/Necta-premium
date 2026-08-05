@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import ScatterBeans from "./ScatterBeans";
+import a54208 from "../assets/A54208.jpeg";
+import img0763 from "../assets/IMG_0763.jpg";
+import nectaBand from "../assets/necta-band.jpg";
+import espresso2 from "../assets/espresso-2.jpg";
 
 /* ------------------------------------------------------------------ *
  * PLACEHOLDER CONTENT
@@ -30,10 +34,10 @@ interface Voice {
 }
 
 const CAFES: Cafe[] = [
-  { img: "/img/A54208.jpeg", label: "Partner café — counter service" },
-  { img: "/img/espresso-3.jpg", label: "Partner café — espresso bar" },
-  { img: "/img/necta-band.jpg", label: "Partner café — table service" },
-  { img: "/img/espresso-2.jpg", label: "Partner café — brew bar" },
+  { img: a54208, label: "Partner café — counter service" },
+  { img: img0763, label: "Partner café — espresso bar" },
+  { img: nectaBand, label: "Partner café — table service" },
+  { img: espresso2, label: "Partner café — brew bar" },
 ];
 
 const VOICES: Voice[] = [

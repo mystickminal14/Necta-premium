@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
+import beansTexture from "../assets/beans-texture.jpg";
 
 export default function VideoSection() {
   return (
     <section className="relative overflow-hidden bg-leaf py-20 text-cream sm:py-28">
-      <div className="absolute inset-0 bg-cover bg-center opacity-[0.08] mix-blend-luminosity" style={{ backgroundImage: "url('/img/beans-texture.jpg')" }} />
+      <div className="absolute inset-0 bg-cover bg-center opacity-[0.08] mix-blend-luminosity" style={{ backgroundImage: `url(${beansTexture})` }} />
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <div className="mx-auto mb-12 max-w-2xl text-center">
           <p className="font-hand text-2xl text-caramel-light sm:text-3xl">straight from the roastery</p>

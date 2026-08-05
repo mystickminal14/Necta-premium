@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
+import beansTexture from "../assets/beans-texture.jpg";
+import bean from "../assets/bean.png";
 
 interface Props {
   eyebrow: string;
@@ -20,7 +22,7 @@ const BEANS: { top: string; left?: string; right?: string; w: number; rot: numbe
 export default function PageHeader({ eyebrow, title, highlight, subtitle, crumb }: Props) {
   return (
     <section className="relative overflow-hidden bg-[radial-gradient(130%_120%_at_78%_-10%,#3a2416_0%,#2a1810_45%,#1a0d06_100%)] px-4 pb-16 pt-32 text-cream sm:px-8 sm:pb-20 sm:pt-40">
-      <div className="absolute inset-0 bg-cover bg-center opacity-[0.07] mix-blend-luminosity" style={{ backgroundImage: "url('/img/beans-texture.jpg')" }} />
+      <div className="absolute inset-0 bg-cover bg-center opacity-[0.07] mix-blend-luminosity" style={{ backgroundImage: `url(${beansTexture})` }} />
       <div className="grain absolute inset-0" />
 
       {/* floating beans */}
@@ -28,7 +30,7 @@ export default function PageHeader({ eyebrow, title, highlight, subtitle, crumb 
         {BEANS.map((b, i) => (
           <motion.img
             key={i}
-            src="/img/bean.png"
+            src={bean}
             alt=""
             animate={{ y: [0, -14, 0], rotate: [b.rot, b.rot + 8, b.rot] }}
             transition={{ duration: b.dur, repeat: Infinity, ease: "easeInOut" }}

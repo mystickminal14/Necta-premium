@@ -15,6 +15,14 @@ import PageHeader from "../components/PageHeader";
 import Process from "../components/Process";
 import Faq from "../components/Faq";
 import type { QA } from "../components/Faq";
+import nectaSpeciality from "../assets/necta-speciality.jpg";
+import nectaHouse from "../assets/necta-house.jpg";
+import nectaSpecial from "../assets/necta-special.jpg";
+import nectaValley from "../assets/necta-valley.jpg";
+import nectaPeak from "../assets/necta-peak.jpg";
+import espresso3 from "../assets/espresso-3.jpg";
+import espresso2 from "../assets/espresso-2.jpg";
+import nectaFaq from "../assets/necta-faq.jpg";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const BRUGNETTI_URL = "https://www.officinebrugnetti.com/EN/";
@@ -88,7 +96,7 @@ const PREMIUM: Product[] = [
       { size: "500 g", price: "Rs 1,850" },
       { size: "250 g", price: "Rs 1,000" },
     ],
-    img: "/img/necta-speciality.jpg",
+    img: nectaSpeciality,
   },
   {
     name: "House Blend",
@@ -100,7 +108,7 @@ const PREMIUM: Product[] = [
       { size: "500 g", price: "Rs 1,700" },
       { size: "250 g", price: "Rs 900" },
     ],
-    img: "/img/necta-house.jpg",
+    img: nectaHouse,
   },
 ];
 
@@ -115,7 +123,7 @@ const COMMERCIAL: Product[] = [
       { size: "500 g", price: "Rs 1,600" },
       { size: "250 g", price: "Rs 850" },
     ],
-    img: "/img/necta-special.jpg",
+    img: nectaSpecial,
   },
   {
     name: "Valley Classic",
@@ -127,7 +135,7 @@ const COMMERCIAL: Product[] = [
       { size: "500 g", price: "Rs 1,500" },
       { size: "250 g", price: "Rs 800" },
     ],
-    img: "/img/necta-valley.jpg",
+    img: nectaValley,
   },
   {
     name: "Peak Strong",
@@ -139,7 +147,7 @@ const COMMERCIAL: Product[] = [
       { size: "500 g", price: "Rs 1,350" },
       { size: "250 g", price: "Rs 700" },
     ],
-    img: "/img/necta-peak.jpg",
+    img: nectaPeak,
   },
 ];
 
@@ -165,35 +173,35 @@ const POPULAR_BEANS: Bean[] = [
     name: "Speciality Coffee",
     roast: "City · City Plus · Full City",
     blurb: "Our finest graded lots, cupped for clarity and character — roasted to the profile you choose.",
-    img: "/img/necta-speciality.jpg",
+    img: nectaSpeciality,
     price: "Rs 3,500",
   },
   {
     name: "House Blend",
     roast: "City · City Plus · Full City",
     blurb: "A balanced signature blend built for everyday brewing, roasted to your preferred profile.",
-    img: "/img/necta-house.jpg",
+    img: nectaHouse,
     price: "Rs 3,200",
   },
   {
     name: "Necta Special",
     roast: "Medium · Medium Dark",
     blurb: "Our flagship commercial roast — rich, rounded and dialled in for cafés and busy kitchens.",
-    img: "/img/necta-special.jpg",
+    img: nectaSpecial,
     price: "Rs 3,000",
   },
   {
     name: "Valley Classic",
     roast: "Medium · Medium Dark",
     blurb: "A dependable medium roast with a smooth, classic cup that keeps regulars coming back.",
-    img: "/img/necta-valley.jpg",
+    img: nectaValley,
     price: "Rs 2,800",
   },
   {
     name: "Peak Strong",
     roast: "Medium · Medium Dark",
     blurb: "Bold and full-bodied with a strong finish — made for milk drinks and big flavour.",
-    img: "/img/necta-peak.jpg",
+    img: nectaPeak,
     price: "Rs 2,600",
   },
 ];
@@ -211,13 +219,13 @@ const MACHINES: Machine[] = [
     name: "Brugnetti Luna",
     tag: "Premium",
     blurb: "A commercial-grade espresso machine built for high-volume cafés — precise, powerful and reliable.",
-    img: "/img/espresso-3.jpg",
+    img: espresso3,
   },
   {
     name: "Mito Base Compact",
     tag: "Standard",
     blurb: "A compact base machine for smaller counters — the everyday workhorse for a steady flow of shots.",
-    img: "/img/espresso-2.jpg",
+    img: espresso2,
   },
 ];
 
@@ -617,7 +625,7 @@ export default function ProductPage() {
       {/* how we do it — From Farm To Cup */}
       <Process />
 
-      <Faq items={FAQS} eyebrow="before you buy" image="/img/necta-faq.jpg" />
+      <Faq items={FAQS} eyebrow="before you buy" image={nectaFaq} />
     </>
   );
 }
