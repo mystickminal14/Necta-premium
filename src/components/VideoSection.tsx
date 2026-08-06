@@ -33,7 +33,7 @@ export default function VideoSection() {
                 playsInline
                 autoPlay
                 preload="metadata"
-                className="aspect-video w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="aspect-4/3 w-full object-cover transition-transform duration-700 group-hover:scale-105 sm:aspect-5/4"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-4 left-5">

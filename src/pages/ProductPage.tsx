@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -7,6 +8,7 @@ import {
   ExternalLink,
   Handshake,
   LifeBuoy,
+  Plus,
   Settings2,
   Store,
 } from "lucide-react";
@@ -15,11 +17,11 @@ import PageHeader from "../components/PageHeader";
 import Process from "../components/Process";
 import Faq from "../components/Faq";
 import type { QA } from "../components/Faq";
-import nectaSpeciality from "../assets/necta-speciality.jpg";
-import nectaHouse from "../assets/necta-house.jpg";
-import nectaSpecial from "../assets/necta-special.jpg";
-import nectaValley from "../assets/necta-valley.jpg";
-import nectaPeak from "../assets/necta-peak.jpg";
+import ScrollPager from "../components/ScrollPager";
+import AddToCartModal from "../components/AddToCartModal";
+import { useCart } from "../lib/cart";
+import { COMMERCIAL, POPULAR, PREMIUM, npr } from "../lib/products";
+import type { Product, Segment } from "../lib/products";
 import espresso3 from "../assets/espresso-3.jpg";
 import espresso2 from "../assets/espresso-2.jpg";
 import nectaFaq from "../assets/necta-faq.jpg";
@@ -59,152 +61,11 @@ const OFFERS: Offer[] = [
   },
 ];
 
-/* ------------------------------------------------------------------ *
- * Our Coffee — the full range, priced per pack size (1 kg / 500 g / 250 g).
- * ------------------------------------------------------------------ */
-
-interface Pack {
-  size: string;
-  price: string;
-}
-
-type Accent = "gold" | "green";
-
-interface Product {
-  name: string;
-  roast: string;
-  prices: Pack[];
-  tag: string;
-  blurb: string;
-  img: string;
-}
-
 /* premium and everyday tiers read differently at a glance */
-const ACCENT: Record<Accent, string> = {
-  gold: "bg-caramel text-espresso",
-  green: "bg-leaf-2 text-cream",
+const ACCENT: Record<Segment, string> = {
+  premium: "bg-caramel text-espresso",
+  commercial: "bg-leaf-2 text-cream",
 };
-
-const PREMIUM: Product[] = [
-  {
-    name: "Speciality Coffee",
-    roast: "City · City Plus · Full City · Full City Plus",
-    tag: "Speciality",
-    blurb: "Our finest graded lots, cupped for clarity and character — roasted to the profile you choose.",
-    prices: [
-      { size: "1 kg", price: "Rs 3,500" },
-      { size: "500 g", price: "Rs 1,850" },
-      { size: "250 g", price: "Rs 1,000" },
-    ],
-    img: nectaSpeciality,
-  },
-  {
-    name: "House Blend",
-    roast: "City · City Plus · Full City · Full City Plus",
-    tag: "Signature",
-    blurb: "A balanced signature blend built for everyday brewing, roasted to your preferred profile.",
-    prices: [
-      { size: "1 kg", price: "Rs 3,200" },
-      { size: "500 g", price: "Rs 1,700" },
-      { size: "250 g", price: "Rs 900" },
-    ],
-    img: nectaHouse,
-  },
-];
-
-const COMMERCIAL: Product[] = [
-  {
-    name: "Necta Special",
-    roast: "Medium · Medium Dark",
-    tag: "Flagship",
-    blurb: "Our flagship commercial roast — rich, rounded and dialled in for cafés and busy kitchens.",
-    prices: [
-      { size: "1 kg", price: "Rs 3,000" },
-      { size: "500 g", price: "Rs 1,600" },
-      { size: "250 g", price: "Rs 850" },
-    ],
-    img: nectaSpecial,
-  },
-  {
-    name: "Valley Classic",
-    roast: "Medium · Medium Dark",
-    tag: "Classic",
-    blurb: "A dependable medium roast with a smooth, classic cup that keeps regulars coming back.",
-    prices: [
-      { size: "1 kg", price: "Rs 2,800" },
-      { size: "500 g", price: "Rs 1,500" },
-      { size: "250 g", price: "Rs 800" },
-    ],
-    img: nectaValley,
-  },
-  {
-    name: "Peak Strong",
-    roast: "Medium · Medium Dark",
-    tag: "Strong",
-    blurb: "Bold and full-bodied with a strong finish — made for milk drinks and big flavour.",
-    prices: [
-      { size: "1 kg", price: "Rs 2,600" },
-      { size: "500 g", price: "Rs 1,350" },
-      { size: "250 g", price: "Rs 700" },
-    ],
-    img: nectaPeak,
-  },
-];
-
-/* ------------------------------------------------------------------ *
- * PLACEHOLDER — Most Popular Sellings
- *
- * All 1 kg. The client is still deciding which varieties make the cut, so
- * this array is the only thing that needs editing: add, remove or rename
- * entries and the grid takes care of itself. Drop `price` to show
- * "On request" instead.
- * ------------------------------------------------------------------ */
-
-interface Bean {
-  name: string;
-  roast: string;
-  blurb: string;
-  img?: string;
-  price?: string;
-}
-
-const POPULAR_BEANS: Bean[] = [
-  {
-    name: "Speciality Coffee",
-    roast: "City · City Plus · Full City",
-    blurb: "Our finest graded lots, cupped for clarity and character — roasted to the profile you choose.",
-    img: nectaSpeciality,
-    price: "Rs 3,500",
-  },
-  {
-    name: "House Blend",
-    roast: "City · City Plus · Full City",
-    blurb: "A balanced signature blend built for everyday brewing, roasted to your preferred profile.",
-    img: nectaHouse,
-    price: "Rs 3,200",
-  },
-  {
-    name: "Necta Special",
-    roast: "Medium · Medium Dark",
-    blurb: "Our flagship commercial roast — rich, rounded and dialled in for cafés and busy kitchens.",
-    img: nectaSpecial,
-    price: "Rs 3,000",
-  },
-  {
-    name: "Valley Classic",
-    roast: "Medium · Medium Dark",
-    blurb: "A dependable medium roast with a smooth, classic cup that keeps regulars coming back.",
-    img: nectaValley,
-    price: "Rs 2,800",
-  },
-  {
-    name: "Peak Strong",
-    roast: "Medium · Medium Dark",
-    blurb: "Bold and full-bodied with a strong finish — made for milk drinks and big flavour.",
-    img: nectaPeak,
-    price: "Rs 2,600",
-  },
-];
 
 /* Machine line-up — imagery is ours; the full catalogue lives on Brugnetti. */
 interface Machine {
@@ -290,23 +151,37 @@ function OfferCard({ o, i }: { o: Offer; i: number }) {
   );
 }
 
-function PackCard({ p, i, accent }: { p: Product; i: number; accent: Accent }) {
+/* the card body is shared by both catalogue cards — only the price
+ * footer and the badge differ between a full pack card and a 1 kg bag */
+function CardShell({
+  p,
+  i,
+  badge,
+  badgeClass,
+  reveal = true,
+  children,
+}: {
+  p: Product;
+  i: number;
+  badge: string;
+  badgeClass: string;
+  /** off inside a horizontal scroller — a card parked off to the side never
+   *  intersects the viewport, so a whileInView card would stay invisible */
+  reveal?: boolean;
+  children: ReactNode;
+}) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 22 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={reveal ? { opacity: 0, y: 22 } : false}
+      whileInView={reveal ? { opacity: 1, y: 0 } : undefined}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ delay: (i % 3) * 0.09, duration: 0.6, ease: EASE }}
       className="h-full"
     >
-      <Link
-        to="/contact"
-        aria-label={`Enquire about ${p.name}`}
-        className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-espresso/10 bg-white/70 transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-caramel/40 hover:shadow-[0_24px_50px_-30px_rgba(36,19,8,0.6)]"
-      >
+      <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-espresso/10 bg-white/70 transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-caramel/40 hover:shadow-[0_24px_50px_-30px_rgba(36,19,8,0.6)]">
         <div className="relative aspect-[6/5] overflow-hidden bg-gradient-to-b from-cream-2 to-cream-3">
-          <span className={`absolute left-3 top-3 z-20 rounded-full px-2.5 py-1 text-[0.62rem] font-semibold uppercase tracking-wider ${ACCENT[accent]}`}>
-            {p.tag}
+          <span className={`absolute left-3 top-3 z-20 rounded-full px-2.5 py-1 text-[0.62rem] font-semibold uppercase tracking-wider ${badgeClass}`}>
+            {badge}
           </span>
           <img
             src={p.img}
@@ -314,13 +189,6 @@ function PackCard({ p, i, accent }: { p: Product; i: number; accent: Accent }) {
             loading="lazy"
             className="h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.08]"
           />
-
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex items-center justify-between gap-2 bg-gradient-to-t from-espresso/95 via-espresso/55 to-transparent px-4 pb-3 pt-14 opacity-100 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] sm:translate-y-2 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100">
-            <span className="text-sm font-semibold text-cream">Enquire to order</span>
-            <span className={`inline-flex h-8 w-8 items-center justify-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5 ${ACCENT[accent]}`}>
-              <ArrowRight className="h-4 w-4" />
-            </span>
-          </div>
         </div>
 
         <div className="flex flex-1 flex-col p-4">
@@ -336,22 +204,43 @@ function PackCard({ p, i, accent }: { p: Product; i: number; accent: Accent }) {
             ))}
           </div>
           <p className="mt-2.5 flex-1 text-sm leading-relaxed text-espresso/75">{p.blurb}</p>
-
-          <dl className="mt-3 grid grid-cols-3 gap-1 border-t border-espresso/10 pt-3 text-center">
-            {p.prices.map((pk) => (
-              <div key={pk.size}>
-                <dt className="text-[0.6rem] font-medium uppercase tracking-wide text-espresso/55">{pk.size}</dt>
-                <dd className="mt-0.5 whitespace-nowrap text-[0.82rem] font-bold tabular-nums text-espresso sm:text-sm">{pk.price}</dd>
-              </div>
-            ))}
-          </dl>
+          {children}
         </div>
-      </Link>
+      </article>
     </motion.div>
   );
 }
 
-function Group({ eyebrow, title, note, items, grid, accent }: { eyebrow: string; title: string; note?: string; items: Product[]; grid: string; accent: Accent }) {
+function AddButton({ onClick, label }: { onClick: () => void; label: string }) {
+  return (
+    <button
+      onClick={onClick}
+      className="mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-espresso px-4 py-2.5 text-[0.82rem] font-semibold text-cream transition-all duration-300 hover:scale-[1.02] hover:bg-espresso-2"
+    >
+      <Plus className="h-4 w-4" />
+      {label}
+    </button>
+  );
+}
+
+/* full pack card — all three sizes priced, size chosen in the modal */
+function PackCard({ p, i, onAdd }: { p: Product; i: number; onAdd: (p: Product) => void }) {
+  return (
+    <CardShell p={p} i={i} badge={p.tag} badgeClass={ACCENT[p.segment]}>
+      <dl className="mt-3 grid grid-cols-3 gap-1 border-t border-espresso/10 pt-3 text-center">
+        {p.packs.map((pk) => (
+          <div key={pk.size}>
+            <dt className="text-[0.6rem] font-medium uppercase tracking-wide text-espresso/55">{pk.size}</dt>
+            <dd className="mt-0.5 whitespace-nowrap text-[0.82rem] font-bold tabular-nums text-espresso sm:text-sm">{npr(pk.price)}</dd>
+          </div>
+        ))}
+      </dl>
+      <AddButton onClick={() => onAdd(p)} label="Add to cart" />
+    </CardShell>
+  );
+}
+
+function Group({ eyebrow, title, note, items, grid, onAdd }: { eyebrow: string; title: string; note?: string; items: Product[]; grid: string; onAdd: (p: Product) => void }) {
   return (
     <div>
       <div className="mb-6 flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
@@ -364,72 +253,32 @@ function Group({ eyebrow, title, note, items, grid, accent }: { eyebrow: string;
       </div>
       <div className={`grid gap-4 sm:gap-5 ${grid}`}>
         {items.map((p, i) => (
-          <PackCard key={p.name} p={p} i={i} accent={accent} />
+          <PackCard key={p.id} p={p} i={i} onAdd={onAdd} />
         ))}
       </div>
     </div>
   );
 }
 
-function BeanCard({ b, i }: { b: Bean; i: number }) {
+/* popular card — the 1 kg bag, added straight to the cart */
+function BeanCard({ p, i }: { p: Product; i: number }) {
+  const { add, setOpen } = useCart();
+  const kilo = p.packs.find((pk) => pk.kg === 1) ?? p.packs[0];
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 22 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{ delay: (i % 3) * 0.09, duration: 0.6, ease: EASE }}
-      className="h-full"
-    >
-      <Link
-        to="/contact"
-        aria-label={`Enquire about ${b.name}`}
-        className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-espresso/10 bg-white/70 transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-caramel/40 hover:shadow-[0_24px_50px_-30px_rgba(36,19,8,0.6)]"
-      >
-        <div className="relative aspect-[6/5] overflow-hidden bg-gradient-to-b from-cream-2 to-cream-3">
-          <span className="absolute left-3 top-3 z-20 rounded-full bg-caramel px-2.5 py-1 text-[0.62rem] font-semibold uppercase tracking-wider text-espresso">
-            1 kg
-          </span>
-          {b.img ? (
-            <img
-              src={b.img}
-              alt={b.name}
-              loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.08]"
-            />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center">
-              <Coffee className="h-16 w-16 text-espresso/25" strokeWidth={1.1} />
-            </div>
-          )}
-
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex items-center justify-between gap-2 bg-gradient-to-t from-espresso/95 via-espresso/55 to-transparent px-4 pb-3 pt-14 opacity-100 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] sm:translate-y-2 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100">
-            <span className="text-sm font-semibold text-cream">Enquire to order</span>
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-caramel text-espresso transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5">
-              <ArrowRight className="h-4 w-4" />
-            </span>
-          </div>
-        </div>
-
-        <div className="flex flex-1 flex-col p-4">
-          <h3 className="text-base font-bold leading-tight text-espresso">{b.name}</h3>
-          <div className="mt-2 flex flex-wrap gap-1.5">
-            {b.roast.split(" · ").map((r) => (
-              <span
-                key={r}
-                className="rounded-md border border-caramel/25 bg-caramel/[0.08] px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wide text-bean"
-              >
-                {r}
-              </span>
-            ))}
-          </div>
-          <p className="mt-2.5 flex-1 text-sm leading-relaxed text-espresso/75">{b.blurb}</p>
-          <div className="mt-3 flex items-baseline justify-between gap-2 border-t border-espresso/10 pt-3">
-            <span className="text-[0.62rem] font-medium uppercase tracking-wide text-espresso/55">1 kg</span>
-            <span className="text-base font-bold tabular-nums text-espresso">{b.price ?? "On request"}</span>
-          </div>
-        </div>
-      </Link>
-    </motion.div>
+    <CardShell p={p} i={i} badge={kilo.size} badgeClass="bg-caramel text-espresso" reveal={false}>
+      <div className="mt-3 flex items-baseline justify-between gap-2 border-t border-espresso/10 pt-3">
+        <span className="text-[0.62rem] font-medium uppercase tracking-wide text-espresso/55">{kilo.size}</span>
+        <span className="text-base font-bold tabular-nums text-espresso">{npr(kilo.price)}</span>
+      </div>
+      <AddButton
+        onClick={() => {
+          add(p, kilo, 1);
+          setOpen(true);
+        }}
+        label={`Add ${kilo.size} bag`}
+      />
+    </CardShell>
   );
 }
 
@@ -464,6 +313,9 @@ function MachineCard({ m, i }: { m: Machine; i: number }) {
 /* ---------------------------- page ---------------------------- */
 
 export default function ProductPage() {
+  /* the product whose size/quantity sheet is open, if any */
+  const [adding, setAdding] = useState<Product | null>(null);
+
   return (
     <>
       <PageHeader
@@ -528,7 +380,7 @@ export default function ProductPage() {
               note="Graded, single-origin lots roasted to the profile you choose — City through Full City Plus."
               items={PREMIUM}
               grid="max-w-2xl grid-cols-1 min-[480px]:grid-cols-2"
-              accent="gold"
+              onAdd={setAdding}
             />
             <Group
               eyebrow="everyday commercial"
@@ -536,7 +388,7 @@ export default function ProductPage() {
               note="Consistent medium roasts built for cafés, kitchens and daily drinking."
               items={COMMERCIAL}
               grid="grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-3"
-              accent="green"
+              onAdd={setAdding}
             />
           </div>
         </div>
@@ -551,11 +403,11 @@ export default function ProductPage() {
             title="Most Popular Sellings"
             note="Our fastest-moving 1 kg bags — the ones cafés reorder without thinking twice."
           />
-          <div className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-            {POPULAR_BEANS.map((b, i) => (
-              <BeanCard key={b.name} b={b} i={i} />
+          <ScrollPager label="Most popular coffees">
+            {POPULAR.map((p, i) => (
+              <BeanCard key={p.id} p={p} i={i} />
             ))}
-          </div>
+          </ScrollPager>
         </div>
       </section>
 
@@ -626,6 +478,8 @@ export default function ProductPage() {
       <Process />
 
       <Faq items={FAQS} eyebrow="before you buy" image={nectaFaq} />
+
+      <AddToCartModal product={adding} onClose={() => setAdding(null)} />
     </>
   );
 }

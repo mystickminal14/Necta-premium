@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 import ScatterBeans from "./ScatterBeans";
-import pouch from "../assets/necta-cofe-nags.png";
+import pouch from "../assets/new/packet.webp";
 import bean from "../assets/bean.png";
 
 /* ------------------------------------------------------------------ *
@@ -182,20 +182,26 @@ function PacketFace({ roast, back = false }: { roast: Roast; back?: boolean }) {
         className="w-full drop-shadow-[0_50px_80px_rgba(0,0,0,0.65)] transition-[filter] duration-500"
         style={{ filter: roast.tint }}
       />
-      {/* roast band — sits over the printed strip at the foot of the label */}
+      {/* Roast band — covers the printed block at the foot of the label
+          entirely, so the artwork can never say "Dark Roast" while a lighter
+          roast is selected. Coordinates are measured off the packet artwork;
+          re-measure them if the render is ever replaced. */}
       <div
-        className="absolute grid place-items-center overflow-hidden rounded-[2px] shadow-[0_1px_3px_rgba(0,0,0,0.35)] transition-colors duration-500"
+        className="absolute flex flex-col items-center justify-center gap-[0.35em] overflow-hidden rounded-[2px] px-[4%] text-center shadow-[0_1px_3px_rgba(0,0,0,0.3)] transition-colors duration-500"
         style={{
-          left: "13.4%",
-          width: "74%",
-          top: "79%",
-          height: "6.6%",
+          left: "9.9%",
+          width: "79.2%",
+          top: "77.6%",
+          height: "12.9%",
           background: roast.band.bg,
           color: roast.band.fg,
         }}
       >
-        <span className="text-[0.56rem] font-bold uppercase leading-none tracking-[0.22em]">
+        <span className="text-[0.68rem] font-bold uppercase leading-none tracking-[0.16em] sm:text-[0.8rem]">
           {roast.label}
+        </span>
+        <span className="text-[0.36rem] font-semibold uppercase leading-none tracking-[0.14em] opacity-75 sm:text-[0.42rem]">
+          100% Premium Whole Bean Coffee
         </span>
       </div>
     </div>
@@ -427,7 +433,9 @@ function DesktopStage(s: ReturnType<typeof useRoastFlip> & { reduce: boolean; on
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.9, ease: EASE }}
-            className="absolute left-1/2 top-1/2 z-10 w-64 -translate-x-1/2 -translate-y-1/2"
+            /* narrower than the old artwork: this packet render is a much
+               taller crop, so the same width would overflow the stage */
+            className="absolute left-1/2 top-1/2 z-10 w-56 -translate-x-1/2 -translate-y-1/2"
           >
             <Packet turns={s.turns} faces={s.faces} active={active} reduce={s.reduce} />
           </motion.div>
@@ -479,7 +487,7 @@ function MobileStage(s: ReturnType<typeof useRoastFlip> & { reduce: boolean; onP
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.9, ease: EASE }}
-          className="mx-auto my-12 w-full max-w-[15rem]"
+          className="mx-auto my-12 w-full max-w-[12.5rem]"
         >
           <Packet turns={s.turns} faces={s.faces} active={active} reduce={s.reduce} />
         </motion.div>

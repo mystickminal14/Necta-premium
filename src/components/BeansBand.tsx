@@ -4,7 +4,7 @@ const WORDS = [
   "Quality Coffee",
   "Best For Your Coffee Shop",
   "Consistency",
-  "Singly Origin",
+  "Single Origin",
   "Commercial Blend",
   ];
 

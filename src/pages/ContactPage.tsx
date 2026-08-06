@@ -122,12 +122,14 @@ export default function ContactPage() {
           {INFO.map((it) => (
             <div key={it.label} className="flex items-start gap-4 rounded-2xl border border-espresso/10 bg-white/60 p-5">
               <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-caramel/15 text-caramel">{it.icon}</div>
-              <div>
+              {/* min-w-0 + break-words let the email wrap instead of pushing
+                  the card past the screen edge on ~300px phones */}
+              <div className="min-w-0">
                 <p className="text-[0.7rem] uppercase tracking-[0.15em] text-espresso/45">{it.label}</p>
                 {it.href ? (
-                  <a href={it.href} className="text-sm font-semibold text-espresso transition-colors hover:text-caramel">{it.value}</a>
+                  <a href={it.href} className="inline-block min-h-6 break-words py-0.5 text-sm font-semibold text-espresso transition-colors hover:text-caramel">{it.value}</a>
                 ) : (
-                  <p className="text-sm font-semibold text-espresso">{it.value}</p>
+                  <p className="break-words text-sm font-semibold text-espresso">{it.value}</p>
                 )}
               </div>
             </div>

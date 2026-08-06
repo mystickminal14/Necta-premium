@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Leaf, Coffee, HeartHandshake } from "lucide-react";
-import bag from "../assets/IMG_0743.jpg";
-import  hand from "../assets/handheld.jpeg";
+import hand from "../assets/IMG_0743.jpg";
+import  bag from "../assets/new/uses.png";
 import beansTexture from "../assets/beans-texture.jpg";
 
 const VALUES = [
@@ -22,22 +22,24 @@ export default function About() {
       />
       <div className="grain absolute inset-0" />
 
-      {/* the copy column is given the larger share so the three paragraphs can
-          breathe instead of pooling in a narrow ribbon with dead space beside it */}
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-14 xl:gap-16">
+      {/* the image column takes the larger share so the photo can run landscape
+          at a fixed height rather than being cropped to a portrait sliver */}
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-14 xl:gap-16">
         {/* IMAGE collage */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mx-auto w-full max-w-[17.5rem] min-[380px]:max-w-sm sm:max-w-md lg:max-w-lg"
+          className="relative mx-auto w-full max-w-[17.5rem] min-[380px]:max-w-sm sm:max-w-md lg:max-w-none"
         >
           <div className="overflow-hidden rounded-[2rem] shadow-[0_40px_90px_-30px_rgba(0,0,0,0.85)]">
             <img
               src={bag}
               alt="Necta Coffee — editorial"
-              className="aspect-[4/5] w-full object-cover"
+              /* portrait crop on phones where width is scarce; from lg the
+                 height is pinned and the image runs landscape instead */
+              className="aspect-[4/5] w-full object-cover lg:aspect-auto lg:h-[600px]"
             />
           </div>
 
@@ -61,9 +63,9 @@ export default function About() {
         {/* COPY */}
         <div>
           <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="font-hand text-2xl text-caramel-light sm:text-3xl">
-            about us
+            why cafés choose necta
           </motion.p>
-          <motion.h2 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="mt-2 text-[clamp(1.75rem,6vw,3.8rem)] font-bold leading-[1.05] tracking-tight text-cream">
+          <motion.h2 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="mt-2 text-[clamp(1.75rem,4.6vw,3.1rem)] font-bold leading-[1.05] tracking-tight text-cream">
             Right choice, for{" "}
             <br className="hidden sm:block" />
             your <span className="text-caramel-light">coffee</span> shop.
@@ -73,9 +75,9 @@ export default function About() {
             At Necta Coffee, we are committed to helping cafés serve exceptional coffee with confidence. Every bean is carefully sourced from experienced Nepali farmers and producers, thoughtfully processed, and precision roasted to achieve a consistent cup profile that meets professional café standards.
           </motion.p>
 
-          {/* the two supporting paragraphs pair up once there's room, so the column
-              fills out instead of trailing a tall empty gutter beside it */}
-          <div className="mt-4 grid gap-x-8 gap-y-3 lg:grid-cols-2">
+          {/* single column now that the photo takes the wider share — paired
+              columns here would leave each paragraph too narrow to read */}
+          <div className="mt-4 grid gap-x-8 gap-y-3">
             <motion.p initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.18 }} className="text-[0.95rem] leading-relaxed text-cream/50 sm:text-base">
               Our focus extends far beyond roasting. We work closely throughout every stage—from cherry selection and processing to roast development and quality control—to ensure every cup delivers the flavor, consistency, and reliability your customers expect.
             </motion.p>

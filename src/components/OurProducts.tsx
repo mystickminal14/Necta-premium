@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import espresso from "../assets/espresso.jpg";
-import v60 from "../assets/v60.jpg";
-import coldbrew from "../assets/coldbrew.jpeg";
+import latteArt from "../assets/new/latte-art.jpg";
+import v60 from "../assets/new/v60.jpg";
+import coldbrew from "../assets/new/coldbrew.jpg";
 
 /* ------------------------------------------------------------------ *
  * Three vertical cards. Swap `img` for the client's own shots when they
@@ -20,7 +20,7 @@ const ITEMS: Item[] = [
   {
     name: "Blend",
     blurb: "Balanced and consistent — built for espresso and milk drinks, cup after cup.",
-    img: espresso,
+    img: latteArt,
   },
   {
     name: "Single Origin",
@@ -61,7 +61,11 @@ function ProductCard({ item, i }: { item: Item; i: number }) {
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-espresso via-espresso/70 to-transparent px-4 pb-4 pt-20 sm:px-5 sm:pb-5 sm:pt-24">
             <div className="flex items-end justify-between gap-3">
               <div className="min-w-0">
-                <h3 className="text-lg font-bold leading-tight text-cream sm:text-xl">{item.name}</h3>
+                {/* Cormorant Garamond runs small for its point size, so this
+                    is sized up to sit level with the rest of the card */}
+                <h3 className="font-display text-2xl font-semibold leading-tight text-cream sm:text-[1.7rem]">
+                  {item.name}
+                </h3>
                 {/* blurb stays folded away until hover on pointer devices, and is
                     always visible on touch where there is no hover to discover */}
                 <p className="mt-1.5 text-[0.8rem] leading-relaxed text-cream/70 sm:mt-2 sm:max-h-0 sm:overflow-hidden sm:opacity-0 sm:transition-all sm:duration-500 sm:ease-[cubic-bezier(0.16,1,0.3,1)] sm:group-hover:max-h-24 sm:group-hover:opacity-100">

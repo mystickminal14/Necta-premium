@@ -5,6 +5,8 @@
   /* Helvetica first, Inter as the closest free fallback */
   --font-sans: "Helvetica Neue", Helvetica, "Inter", Arial, sans-serif;
   --font-hand: "Caveat", cursive;
+  /* display serif for section headlines */
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
 
   --color-cream: #f4ecdd;
   --color-cream-2: #efe3cf;
@@ -55,6 +57,23 @@ body {
   box-sizing: border-box;
 }
 
+/* Tailwind v4's reset drops the browser default `cursor: pointer` on
+   buttons, which makes every control feel dead. Put it back globally so
+   individual components don't each have to remember `cursor-pointer`.
+   `:not(:disabled)` leaves the per-component `disabled:cursor-not-allowed`
+   rules intact. */
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]),
+label[for],
+summary {
+  cursor: pointer;
+}
+
+button:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
 /* hide scrollbar but keep scrolling */
 ::-webkit-scrollbar {
   width: 10px;
@@ -70,6 +89,10 @@ body {
 /* ----------  utilities  ---------- */
 .font-hand {
   font-family: var(--font-hand);
+}
+
+.font-display {
+  font-family: var(--font-display);
 }
 
 /* subtle paper grain overlay */

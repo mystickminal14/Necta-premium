@@ -6,7 +6,7 @@ import hero from "../assets/converted_image.webp";
 import bean from "../assets/bean.png";
 
 const STATS: [string, string][] = [
-  ["10+", "Farmers"],
+  ["10+", "Working With Farmers"],
   ["100%", "Quality Control"],
   ["365 days", "consistency"],
 ];
@@ -53,14 +53,16 @@ export default function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2 rounded-full border border-espresso/10 bg-cream/60 px-3.5 py-1.5 text-xs font-medium text-espresso/70 backdrop-blur"
+            /* max-w-full + a shrinkable text span keep the pill inside the
+               viewport on ~300px phones instead of running past the edge */
+            className="inline-flex max-w-full items-center gap-2 rounded-full border border-espresso/10 bg-cream/60 px-3.5 py-1.5 text-xs font-medium text-espresso/70 backdrop-blur"
           >
-            <span className="flex">
+            <span className="flex shrink-0">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-3.5 w-3.5 fill-caramel text-caramel" />
               ))}
             </span>
-            Loved By Every Coffee Shop across Nepal
+            <span className="min-w-0">Loved By Every Coffee Shop across Nepal</span>
           </motion.div>
 
           <motion.p

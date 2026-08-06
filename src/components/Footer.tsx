@@ -67,8 +67,10 @@ export default function Footer() {
         </motion.div>
 
         {/* MIDDLE — columns */}
-        <div className="grid grid-cols-2 gap-10 py-12 sm:grid-cols-4">
-          <div className="col-span-2 sm:col-span-1">
+        {/* single column first — two columns at ~300px squeeze the contact
+            details down to ~105px and clip the email address */}
+        <div className="grid grid-cols-1 gap-10 py-12 min-[420px]:grid-cols-2 sm:grid-cols-4">
+          <div className="min-[420px]:col-span-2 sm:col-span-1">
             <p className="flex items-baseline gap-1.5 leading-none">
               <span className="font-hand text-3xl text-caramel-light">Necta</span>
               <span className="text-lg font-bold uppercase tracking-[0.22em] text-cream">Coffee</span>
@@ -91,7 +93,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               {EXPLORE.map(([l, h]) => (
                 <li key={h}>
-                  <Link to={h} className="inline-flex items-center gap-1 transition-colors hover:text-cream">{l}</Link>
+                  <Link to={h} className="inline-flex min-h-6 items-center gap-1 py-0.5 transition-colors hover:text-cream">{l}</Link>
                 </li>
               ))}
             </ul>
@@ -100,21 +102,21 @@ export default function Footer() {
           <div>
             <p className="mb-3 text-xs uppercase tracking-[0.18em] text-caramel-light">Shop</p>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/product" className="transition-colors hover:text-cream">Coffee Bags</Link></li>
-              <li><Link to="/product" className="transition-colors hover:text-cream">Espresso Machines</Link></li>
-              <li><Link to="/product" className="transition-colors hover:text-cream">Accessories</Link></li>
+              <li><Link to="/product" className="inline-flex min-h-6 items-center py-0.5 transition-colors hover:text-cream">Coffee Bags</Link></li>
+              <li><Link to="/product" className="inline-flex min-h-6 items-center py-0.5 transition-colors hover:text-cream">Espresso Machines</Link></li>
+              <li><Link to="/product" className="inline-flex min-h-6 items-center py-0.5 transition-colors hover:text-cream">Accessories</Link></li>
             </ul>
           </div>
 
           <div>
             <p className="mb-3 text-xs uppercase tracking-[0.18em] text-caramel-light">Reach us</p>
-            <p className="flex items-center gap-2 text-sm"><MapPin className="h-4 w-4 text-caramel-light" /> Jhamsikhel, Lalitpur, Nepal</p>
-            <p className="mt-2 flex items-center gap-2 text-sm"><MessageCircle className="h-4 w-4 text-caramel-light" /> DM for free sample</p>
-            <a href="mailto:nectacoffeept@gmail.com" className="mt-2 flex items-center gap-2 text-sm transition-colors hover:text-cream">
-              <Mail className="h-4 w-4 text-caramel-light" /> nectacoffeept@gmail.com
+            <p className="flex items-center gap-2 text-sm"><MapPin className="h-4 w-4 shrink-0 text-caramel-light" /> Jhamsikhel, Lalitpur, Nepal</p>
+            <p className="mt-2 flex items-center gap-2 text-sm"><MessageCircle className="h-4 w-4 shrink-0 text-caramel-light" /> DM for free sample</p>
+            <a href="mailto:nectacoffeept@gmail.com" className="mt-2 flex min-h-6 items-center gap-2 text-sm transition-colors hover:text-cream">
+              <Mail className="h-4 w-4 shrink-0 text-caramel-light" /> <span className="min-w-0 break-all">nectacoffeept@gmail.com</span>
             </a>
-            <a href="tel:+9779849515304" className="mt-2 flex items-center gap-2 text-sm transition-colors hover:text-cream">
-              <Phone className="h-4 w-4 text-caramel-light" /> +977 9849515304
+            <a href="tel:+9779849515304" className="mt-2 flex min-h-6 items-center gap-2 text-sm transition-colors hover:text-cream">
+              <Phone className="h-4 w-4 shrink-0 text-caramel-light" /> +977 9849515304
             </a>
           </div>
         </div>
@@ -131,7 +133,7 @@ export default function Footer() {
       <div className="relative border-t border-cream/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-6 text-xs text-cream/40 sm:flex-row sm:px-8">
           <p>© {new Date().getFullYear()} Necta Coffee · Grown in Nepal · Est. 2020</p>
-          <a href="https://www.instagram.com/nectacoffeepvt.ltd/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 transition-colors hover:text-cream">
+          <a href="https://www.instagram.com/nectacoffeepvt.ltd/" target="_blank" rel="noreferrer" className="inline-flex min-h-6 items-center gap-1 py-0.5 transition-colors hover:text-cream">
             Follow our journey <ArrowUpRight className="h-3.5 w-3.5" />
           </a>
         </div>

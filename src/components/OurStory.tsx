@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import a54208 from "../assets/A54208.jpeg";
 
+/* kept in step with the hero stats — change both together */
 const STATS: [string, string][] = [
-  ["1,400m+", "Avg Altitude"],
-  ["100%", "Single Origin"],
-  ["48hr", "Farm to Roast"],
+  ["10+", "Working With Farmers"],
+  ["100%", "Quality Control"],
+  ["365 days", "Consistency"],
 ];
 
 export default function OurStory() {
@@ -49,17 +50,19 @@ export default function OurStory() {
             From dedicated farmers to skilled roasters — every step reflects our commitment to quality.
           </motion.p>
 
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }} className="mt-10 grid grid-cols-3 border-t border-cream/10 pt-7">
+          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }} /* stacked on ~300px phones — three columns there leave "365 days"
+   too narrow and it spills past the screen edge */
+className="mt-10 grid grid-cols-1 gap-y-5 border-t border-cream/10 pt-7 min-[400px]:grid-cols-3 min-[400px]:gap-y-0">
             {STATS.map(([n, l], i) => (
               <div
                 key={l}
-                className={
-                  i === 0
-                    ? "border-r border-cream/10 pr-4"
-                    : i === STATS.length - 1
-                      ? "pl-4"
-                      : "border-r border-cream/10 px-4"
-                }
+                className={[
+                  "min-[400px]:px-4",
+                  i === 0 ? "min-[400px]:pl-0" : "",
+                  i === STATS.length - 1
+                    ? "min-[400px]:pr-0"
+                    : "min-[400px]:border-r min-[400px]:border-cream/10",
+                ].join(" ")}
               >
                 <div className="text-[clamp(1.4rem,2.5vw,2rem)] font-bold leading-none text-caramel-light">{n}</div>
                 <div className="mt-2 text-[0.65rem] uppercase tracking-[0.12em] text-cream/45">{l}</div>

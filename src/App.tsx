@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useLenis } from "./lib/useLenis";
+import { CartProvider } from "./lib/cart";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import CartDrawer from "./components/CartDrawer";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import ContactPage from "./pages/ContactPage";
@@ -19,7 +21,7 @@ export default function App() {
   useLenis();
 
   return (
-    <>
+    <CartProvider>
       <ScrollToTop />
       <Navbar />
       <main className="relative">
@@ -31,6 +33,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
-    </>
+      <CartDrawer />
+    </CartProvider>
   );
 }

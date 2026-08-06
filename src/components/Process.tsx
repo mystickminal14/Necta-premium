@@ -32,7 +32,8 @@ export default function Process() {
             how we do it
           </motion.p>
           <motion.h2 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.8, ease: EASE }} className="mt-2 text-[clamp(1.6rem,5.6vw,3.4rem)] font-semibold leading-tight text-espresso">
-            From Farm To Cup. <span className="text-caramel">Every Step.</span>
+            From Farm To Cup. <br />
+            <span className="text-caramel">Every Step.</span>
           </motion.h2>
         </div>
 
