@@ -15,8 +15,8 @@ export default function About() {
       <div className="grain absolute inset-0" />
 
       {/* the image column takes the larger share so the photo can run landscape
-          at a fixed height rather than being cropped to a portrait sliver */}
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-14 xl:gap-16">
+          and keep the full counter scene in frame */}
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-14 xl:gap-16">
         {/* IMAGE collage */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -28,12 +28,15 @@ export default function About() {
           <div className="overflow-hidden rounded-[2rem] shadow-[0_40px_90px_-30px_rgba(0,0,0,0.85)]">
             <img
               src={bag}
-              alt="Necta Coffee — editorial"
-              /* portrait crop on phones where width is scarce; from lg the
-                 height is pinned and the image runs landscape instead */
-              /* anchored left so the packet stays in frame when the landscape
-                 crop trims the sides */
-              className="aspect-[4/5] w-full object-cover object-left lg:aspect-auto lg:h-[600px]"
+              alt="Necta Coffee — a barista pulling a shot beside a bag of Necta beans"
+              /* the source is 1.77:1. The 3:2 frame is what keeps this column
+                 the same height as the copy beside it, so the framing is done
+                 inside it rather than by reshaping it: object-right drops the
+                 slack off the left (dried flowers), and the scale — pinned to
+                 the left edge so that stays put — pushes the bright window off
+                 the right. What's left runs packet → barista → machine →
+                 grinder, at the cost of ~7% off the top and bottom. */
+              className="aspect-3/2 w-full origin-left scale-[1.17] object-cover object-right"
             />
           </div>
 
@@ -59,11 +62,11 @@ export default function About() {
           {/* two paragraphs, stacked and set at the same size — the old
               split into a smaller two-column pair read as a footnote */}
           <motion.p initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }} className="mt-6 text-[1rem] leading-relaxed text-cream/70 sm:text-[1.05rem]">
-            At Necta Coffee, we are committed to helping every cafe serve exceptional coffee with confidence. Every bean is carefully sourced from experienced Nepali farmers and producers, thoughtfully processed, and precision roasted to achieve a consistent cup profile that meets professional cafe standards. Our focus extends far beyond roasting — we work closely throughout every stage, from cherry selection and processing to roast development and quality control, to ensure every cup delivers the flavor, consistency, and reliability your customers expect.
+            At Necta Coffee, we help every cafe serve exceptional coffee with confidence. Every bean is sourced from experienced Nepali farmers, carefully processed, and precision roasted to a consistent cup profile that meets professional cafe standards.
           </motion.p>
 
           <motion.p initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }} className="mt-4 text-[1rem] leading-relaxed text-cream/70 sm:text-[1.05rem]">
-            Behind every bag of Necta Coffee is a commitment to quality, consistency, and long-term partnerships. We treat your menu as an extension of our own craft — supporting your team with dependable supply, transparent sourcing, roast profiles tuned to the way you brew, and hands-on guidance whenever you need it. That partnership gives your cafe the foundation to build a memorable coffee experience, keep your regulars coming back, and strengthen your brand with every cup served.
+            Our work goes far beyond roasting. We back your team with dependable supply, transparent sourcing, and roast profiles tuned to the way you brew — the foundation for a coffee experience that keeps your regulars coming back.
           </motion.p>
         </div>
       </div>

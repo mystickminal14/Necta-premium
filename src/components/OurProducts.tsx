@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { contactLink } from "../lib/enquiry";
-import latteArt from "../assets/new/latte-art.jpg";
+import latteArt from "../assets/new_laatte.jpg";
 import v60 from "../assets/new/v60.jpg";
 import coldbrew from "../assets/new/coldbrew.jpg";
 

@@ -6,6 +6,7 @@ import PageHeader from "../components/PageHeader";
 import { readPurpose } from "../lib/enquiry";
 import Faq from "../components/Faq";
 import type { QA } from "../components/Faq";
+import nectaFaq from "../assets/necta-faq.jpg";
 
 const INFO = [
   { icon: <MapPin className="h-5 w-5" />, label: "Visit us", value: "Jhamsikhel 08, Lalitpur MNC, Nepal" },
@@ -161,7 +162,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <Faq items={FAQS} eyebrow="quick answers" />
+      <Faq items={FAQS} eyebrow="quick answers" image={nectaFaq} />
     </>
   );
 }
