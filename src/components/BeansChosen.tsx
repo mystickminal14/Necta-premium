@@ -47,10 +47,13 @@ const ROASTS: Roast[] = [
   {
     id: "light",
     label: "Light Roast",
-    band: { bg: "#d9b382", fg: "#241308" },
+    /* band colours are the real packet print colours; the glow/wash are
+       lightened derivatives, since the packet colours themselves are too dark
+       to read as light on the green stage */
+    band: { bg: "#344A1A", fg: "#f4ecdd" },
     tint: "brightness(1.06) saturate(0.94)",
-    glow: "rgba(205,160,106,0.30)",
-    wash: "radial-gradient(58% 48% at 50% 42%, rgba(205,160,106,0.20), transparent 72%)",
+    glow: "rgba(122,158,74,0.32)",
+    wash: "radial-gradient(58% 48% at 50% 42%, rgba(122,158,74,0.22), transparent 72%)",
     left: [
       { icon: <Citrus className={ic} />, top: "Acidity", title: "Bright Acidity" },
       { icon: <Droplets className={ic} />, top: "Body", title: "Medium Body" },
@@ -65,10 +68,10 @@ const ROASTS: Roast[] = [
   {
     id: "medium",
     label: "Medium Roast",
-    band: { bg: "#41627d", fg: "#f4ecdd" },
+    band: { bg: "#072B4A", fg: "#f4ecdd" },
     tint: "none",
-    glow: "rgba(65,98,125,0.38)",
-    wash: "radial-gradient(58% 48% at 50% 42%, rgba(65,98,125,0.26), transparent 72%)",
+    glow: "rgba(45,98,150,0.38)",
+    wash: "radial-gradient(58% 48% at 50% 42%, rgba(45,98,150,0.26), transparent 72%)",
     left: [
       { icon: <Citrus className={ic} />, top: "Acidity", title: "Medium Acidity" },
       { icon: <Droplets className={ic} />, top: "Body", title: "Medium Body" },
@@ -83,7 +86,7 @@ const ROASTS: Roast[] = [
   {
     id: "medium-dark",
     label: "Medium Dark Roast",
-    band: { bg: "#3a2416", fg: "#e8d8bd" },
+    band: { bg: "#2F1910", fg: "#e8d8bd" },
     tint: "brightness(0.9) saturate(1.1) contrast(1.05)",
     glow: "rgba(107,66,38,0.38)",
     wash: "radial-gradient(58% 48% at 50% 42%, rgba(107,66,38,0.26), transparent 72%)",
@@ -325,7 +328,8 @@ const Heading = () => (
       transition={{ duration: 0.6 }}
       className="font-hand text-2xl text-caramel-light sm:text-3xl"
     >
-pick your profile    </motion.p>
+      pick your beans
+    </motion.p>
     <motion.h2
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}

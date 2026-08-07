@@ -31,7 +31,9 @@ export default function About() {
               alt="Necta Coffee — editorial"
               /* portrait crop on phones where width is scarce; from lg the
                  height is pinned and the image runs landscape instead */
-              className="aspect-[4/5] w-full object-cover lg:aspect-auto lg:h-[600px]"
+              /* anchored left so the packet stays in frame when the landscape
+                 crop trims the sides */
+              className="aspect-[4/5] w-full object-cover object-left lg:aspect-auto lg:h-[600px]"
             />
           </div>
 
@@ -61,7 +63,7 @@ export default function About() {
           </motion.p>
 
           <motion.p initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }} className="mt-4 text-[1rem] leading-relaxed text-cream/70 sm:text-[1.05rem]">
-            Behind every bag of Necta Coffee is a commitment to quality, consistency, and long-term partnerships, giving your cafe the foundation to build a memorable coffee experience and strengthen your brand with every cup served.
+            Behind every bag of Necta Coffee is a commitment to quality, consistency, and long-term partnerships. We treat your menu as an extension of our own craft — supporting your team with dependable supply, transparent sourcing, roast profiles tuned to the way you brew, and hands-on guidance whenever you need it. That partnership gives your cafe the foundation to build a memorable coffee experience, keep your regulars coming back, and strengthen your brand with every cup served.
           </motion.p>
         </div>
       </div>

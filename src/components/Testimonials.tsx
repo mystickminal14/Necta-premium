@@ -170,9 +170,9 @@ export default function Testimonials() {
           </motion.p>
         </div>
 
-        {/* REVIEWS — a carousel on phones, a masonry wall from md up so
-            uneven quote lengths pack together instead of leaving ragged
-            gaps at the foot of a rigid grid */}
+        {/* REVIEWS — a carousel on phones, an even grid from md up: every
+            card is the same size regardless of quote length, so the wall
+            reads as one set rather than a ragged masonry */}
         <div className="mt-10 sm:mt-12 md:hidden">
           <ScrollPager label="Customer reviews" itemClass="w-[86%] min-[480px]:w-[60%]">
             {REVIEWS.map((r) => (
@@ -181,7 +181,9 @@ export default function Testimonials() {
           </ScrollPager>
         </div>
 
-        <div className="mt-12 hidden gap-5 md:block md:columns-2 lg:columns-3">
+        {/* auto-rows-fr keeps every row the same height, so all six cards
+            match — not just the ones sharing a row */}
+        <div className="mt-12 hidden auto-rows-fr gap-5 md:grid md:grid-cols-2 lg:grid-cols-3">
           {REVIEWS.map((r, i) => (
             <motion.div
               key={r.role}
@@ -189,8 +191,7 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.7, delay: (i % 3) * 0.1, ease: EASE }}
-              /* break-inside keeps a card from being split across columns */
-              className="mb-5 break-inside-avoid"
+              className="h-full"
             >
               <ReviewCard r={r} />
             </motion.div>

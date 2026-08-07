@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Origin } from "../lib/products";
 import { contactLink } from "../lib/enquiry";
@@ -31,7 +31,7 @@ export default function OriginCard({ o, i }: { o: Origin; i: number }) {
         <div className="relative aspect-[4/5] overflow-hidden bg-cream-3">
           <img
             src={o.img}
-            alt={`${o.name}, ${o.region}`}
+            alt={`${o.name} single origin coffee`}
             loading="lazy"
             className="h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.08]"
           />
@@ -39,17 +39,11 @@ export default function OriginCard({ o, i }: { o: Origin; i: number }) {
           {/* resting scrim — deepens on hover so the revealed copy stays legible */}
           <div className="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/45 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
 
-          {/* region pill */}
-          <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-cream/15 px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-cream backdrop-blur-sm">
-            <MapPin className="h-3 w-3" />
-            {o.region}
-          </span>
-
           <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
-            {/* sans, to match the "Single Origin Beans" section heading above.
-                Scales down on ~300px phones — "Sindhupalchowk" is 14
-                characters and overflows the card at the full size */}
-            <h3 className="text-[1.35rem] font-bold uppercase leading-none tracking-tight text-cream min-[400px]:text-[1.6rem] sm:text-[1.8rem]">
+            {/* display serif, same treatment as the "Cold Brew" / "Single
+                Origin" product cards. Scales down on ~300px phones —
+                "Sindhupalchowk" is 14 characters and overflows at full size */}
+            <h3 className="font-display text-[1.7rem] font-semibold leading-tight text-cream min-[400px]:text-[1.95rem] sm:text-[2.2rem]">
               {o.name}
             </h3>
 
