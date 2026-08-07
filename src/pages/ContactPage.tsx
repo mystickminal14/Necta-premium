@@ -6,7 +6,7 @@ import PageHeader from "../components/PageHeader";
 import { readPurpose } from "../lib/enquiry";
 import Faq from "../components/Faq";
 import type { QA } from "../components/Faq";
-import nectaFaq from "../assets/necta-faq.jpg";
+import nectaFaq from "../assets/necta-faq.webp";
 
 const INFO = [
   { icon: <MapPin className="h-5 w-5" />, label: "Visit us", value: "Jhamsikhel 08, Lalitpur MNC, Nepal" },

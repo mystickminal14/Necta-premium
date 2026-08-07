@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import a54208 from "../assets/A54208.jpeg";
+import a54208 from "../assets/a54208.webp";
 
 /* kept in step with the hero stats — change both together */
 const STATS: [string, string][] = [
@@ -57,7 +57,7 @@ export default function OurStory() {
 
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }} /* stacked on ~300px phones — three columns there leave "365 days"
    too narrow and it spills past the screen edge */
-className="mt-10 grid grid-cols-1 gap-y-5 border-t border-cream/10 pt-7 min-[400px]:grid-cols-3 min-[400px]:gap-y-0">
+            className="mt-10 grid grid-cols-1 gap-y-5 border-t border-cream/10 pt-7 min-[400px]:grid-cols-3 min-[400px]:gap-y-0">
             {STATS.map(([n, l], i) => (
               <div
                 key={l}

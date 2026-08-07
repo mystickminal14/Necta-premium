@@ -1,8 +1,8 @@
-import nectaSpeciality from "../assets/necta-speciality.jpg";
-import nectaHouse from "../assets/necta-house.jpg";
-import nectaSpecial from "../assets/necta-special.jpg";
-import nectaValley from "../assets/necta-valley.jpg";
-import nectaPeak from "../assets/necta-peak.jpg";
+import nectaSpeciality from "../assets/necta-speciality.webp";
+import nectaHouse from "../assets/necta-house.webp";
+import nectaSpecial from "../assets/necta-special.webp";
+import nectaValley from "../assets/necta-valley.webp";
+import nectaPeak from "../assets/necta-peak.webp";
 
 /* ------------------------------------------------------------------ *
  * The single source of truth for the coffee catalogue. Prices live here

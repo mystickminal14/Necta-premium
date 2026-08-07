@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import beansTexture from "../assets/beans-texture.jpg";
+import beansTexture from "../assets/beans-texture.webp";
 
 export default function VideoSection() {
   return (

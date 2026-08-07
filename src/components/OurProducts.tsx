@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { contactLink } from "../lib/enquiry";
-import latteArt from "../assets/new_laatte.jpg";
-import v60 from "../assets/new/v60.jpg";
-import coldbrew from "../assets/new/coldbrew.jpg";
+import latteArt from "../assets/new_laatte.webp";
+import v60 from "../assets/new/v60.webp";
+import coldbrew from "../assets/new/coldbrew.webp";
 
 /* ------------------------------------------------------------------ *
  * Three vertical cards. Swap `img` for the client's own shots when they

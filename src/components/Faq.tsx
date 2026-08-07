@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Plus, HelpCircle, ArrowRight } from "lucide-react";
-import bagEditorial from "../assets/bag-editorial.jpg";
+import bagEditorial from "../assets/bag-editorial.webp";
 
 export interface QA { q: string; a: string; }
 

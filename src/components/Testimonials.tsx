@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { Quote, Star } from "lucide-react";
 import ScatterBeans from "./ScatterBeans";
 import ScrollPager from "./ScrollPager";
-import a54208 from "../assets/A54208.jpeg";
-import img0763 from "../assets/IMG_0763.jpg";
-import nectaBand from "../assets/necta-band.jpg";
-import handheld from "../assets/new/handheld.jpg";
+import a54208 from "../assets/a54208.webp";
+import img0763 from "../assets/img_0763.webp";
+import nectaBand from "../assets/necta-band.webp";
+import handheld from "../assets/new/handheld.webp";
 
 /* ------------------------------------------------------------------ *
  * PLACEHOLDER CONTENT
@@ -92,9 +92,8 @@ function Stars({ n }: { n: number }) {
       {[...Array(5)].map((_, i) => (
         <Star
           key={i}
-          className={`h-3.5 w-3.5 ${
-            i < n ? "fill-caramel-light text-caramel-light" : "text-cream/25"
-          }`}
+          className={`h-3.5 w-3.5 ${i < n ? "fill-caramel-light text-caramel-light" : "text-cream/25"
+            }`}
         />
       ))}
     </span>

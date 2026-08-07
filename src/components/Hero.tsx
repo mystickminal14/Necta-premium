@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
 import ScatterBeans from "./ScatterBeans";
 import hero from "../assets/converted_image.webp";
-import bean from "../assets/bean.png";
+import bean from "../assets/bean.webp";
 
 const STATS: [string, string][] = [
   ["10+", "Working With Farmers"],
@@ -98,7 +98,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mt-6 max-w-lg text-base leading-relaxed text-espresso/70 sm:text-lg"
           >
-Trusted by cafes across Nepal, our coffee is sourced through long-term relationships with skilled farmers and producers who share our commitment to quality. Every batch is processed and roasted with precision to ensure a consistent cup profile that meets professional cafe standards.          </motion.p>
+            Trusted by cafes across Nepal, our coffee is sourced through long-term relationships with skilled farmers and producers who share our commitment to quality. Every batch is processed and roasted with precision to ensure a consistent cup profile that meets professional cafe standards.          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 14 }}

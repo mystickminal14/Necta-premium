@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import beansTexture from "../assets/beans-texture.jpg";
-import bean from "../assets/bean.png";
+import beansTexture from "../assets/beans-texture.webp";
+import bean from "../assets/bean.webp";
 
 interface Props {
   eyebrow: string;

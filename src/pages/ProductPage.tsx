@@ -19,9 +19,9 @@ import OriginCard from "../components/OriginCard";
 import { COMMERCIAL, ORIGINS, npr } from "../lib/products";
 import { contactLink } from "../lib/enquiry";
 import type { Product, Segment } from "../lib/products";
-import espresso3 from "../assets/espresso-3.jpg";
-import espresso2 from "../assets/espresso-2.jpg";
-import nectaFaq from "../assets/necta-faq.jpg";
+import espresso3 from "../assets/espresso-3.webp";
+import espresso2 from "../assets/espresso-2.webp";
+import nectaFaq from "../assets/necta-faq.webp";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const BRUGNETTI_URL = "https://www.officinebrugnetti.com/EN/";

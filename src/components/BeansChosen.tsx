@@ -16,7 +16,7 @@ import {
 import type { ReactNode } from "react";
 import ScatterBeans from "./ScatterBeans";
 import pouch from "../assets/new/packet.webp";
-import bean from "../assets/bean.png";
+import bean from "../assets/bean.webp";
 
 /* ------------------------------------------------------------------ *
  * Data — one entry per roast. The packet artwork is shared; the band,
@@ -300,9 +300,8 @@ function RoastCard({
             delay: reduce ? 0 : ring * 0.06,
           }}
           style={{ transformOrigin: "center bottom" }}
-          className={`flex items-center gap-2.5 rounded-2xl border border-cream/15 bg-leaf-2/90 p-3 shadow-2xl backdrop-blur-sm sm:gap-3 sm:p-4 ${
-            right ? "flex-row-reverse text-right" : "text-left"
-          }`}
+          className={`flex items-center gap-2.5 rounded-2xl border border-cream/15 bg-leaf-2/90 p-3 shadow-2xl backdrop-blur-sm sm:gap-3 sm:p-4 ${right ? "flex-row-reverse text-right" : "text-left"
+            }`}
         >
           <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-caramel/20 text-caramel-light sm:h-11 sm:w-11">
             {card.icon}
@@ -365,9 +364,8 @@ function Tabs({
             role="tab"
             aria-selected={on}
             onClick={() => onSelect(i)}
-            className={`relative shrink-0 snap-start whitespace-nowrap rounded-full px-4 py-2 text-[0.62rem] font-bold uppercase tracking-[0.14em] transition-colors sm:px-5 sm:py-2.5 sm:text-[0.7rem] sm:tracking-[0.16em] ${
-              on ? "text-espresso" : "text-cream/65 hover:text-cream"
-            }`}
+            className={`relative shrink-0 snap-start whitespace-nowrap rounded-full px-4 py-2 text-[0.62rem] font-bold uppercase tracking-[0.14em] transition-colors sm:px-5 sm:py-2.5 sm:text-[0.7rem] sm:tracking-[0.16em] ${on ? "text-espresso" : "text-cream/65 hover:text-cream"
+              }`}
           >
             {on && (
               <motion.span

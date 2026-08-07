@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import bag from "../assets/new/uses.png";
-import beansTexture from "../assets/beans-texture.jpg";
+import bag from "../assets/new/uses.webp";
+import beansTexture from "../assets/beans-texture.webp";
 
 export default function About() {
   return (

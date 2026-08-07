@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MessageCircle, Mail, MapPin, Phone, ArrowUpRight, Send } from "lucide-react";
-import beansTexture from "../assets/beans-texture.jpg";
+import beansTexture from "../assets/beans-texture.webp";
 
 function Instagram({ className = "" }: { className?: string }) {
   return (

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Sprout, Settings, Flame, Package, Truck } from "lucide-react";
 import type { ReactNode } from "react";
-import bean from "../assets/bean.png";
+import bean from "../assets/bean.webp";
 
 /* small beans drifting down either margin — decorative only, and kept
    clear of the content column so they never sit under the copy */
