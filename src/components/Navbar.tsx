@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingBag, ShoppingCart } from "lucide-react";
-import { useCart } from "../lib/cart";
+import { MessageCircle } from "lucide-react";
 
 const LINKS = [
   { label: "Home", to: "/" },
@@ -25,7 +24,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
-  const { count, setOpen: setCartOpen } = useCart();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -88,36 +86,13 @@ export default function Navbar() {
         </ul>
 
         <div className="flex shrink-0 items-center gap-2">
-          {/* cart */}
-          <button
-            onClick={() => setCartOpen(true)}
-            aria-label={count > 0 ? `Open cart, ${count} items` : "Open cart"}
-            className="relative grid h-9 w-9 place-items-center rounded-full bg-espresso/5 text-espresso transition-colors hover:bg-espresso/10"
-          >
-            <ShoppingCart className="h-[1.15rem] w-[1.15rem]" />
-            <AnimatePresence>
-              {count > 0 && (
-                <motion.span
-                  key={count}
-                  initial={{ scale: 0.4, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.4, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute -right-0.5 -top-0.5 grid h-[1.1rem] min-w-[1.1rem] place-items-center rounded-full bg-caramel px-1 text-[0.62rem] font-bold tabular-nums text-espresso"
-                >
-                  {count}
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </button>
-
-          {/* desktop CTA */}
+          {/* desktop CTA — enquiries only, there is no checkout */}
           <Link
-            to="/product"
+            to="/contact"
             className="hidden items-center gap-2 rounded-full bg-espresso px-5 py-2.5 text-sm font-semibold text-cream transition-transform duration-300 hover:scale-[1.04] hover:bg-espresso-2 md:inline-flex"
           >
-            <ShoppingBag className="h-4 w-4" />
-            Shop
+            <MessageCircle className="h-4 w-4" />
+            Inquire Now
           </Link>
 
           {/* mobile toggle */}
@@ -160,10 +135,10 @@ export default function Navbar() {
               </NavLink>
             ))}
             <Link
-              to="/product"
+              to="/contact"
               className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-espresso px-4 py-3 text-center text-base font-semibold text-cream"
             >
-              <ShoppingBag className="h-4 w-4" /> Shop Our Beans
+              <MessageCircle className="h-4 w-4" /> Inquire Now
             </Link>
           </motion.div>
         )}

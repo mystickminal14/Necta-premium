@@ -36,7 +36,7 @@ export default function OurStory() {
         {/* text */}
         <div>
           <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="font-hand text-2xl text-caramel-light sm:text-3xl">
-            our story
+            our team
           </motion.p>
           <motion.h2 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="mt-2 text-[clamp(2rem,5vw,3.6rem)] font-semibold leading-tight">
             Coffee Crafted <br className="hidden sm:block" />
@@ -48,6 +48,11 @@ export default function OurStory() {
           </motion.p>
           <motion.p initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }} className="mt-4 max-w-md text-base leading-relaxed text-cream/65">
             From dedicated farmers to skilled roasters — every step reflects our commitment to quality.
+          </motion.p>
+          <motion.p initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.28 }} className="mt-4 max-w-md text-base leading-relaxed text-cream/65">
+            We are a small team in Jhamsikhel — the people who visit the farms,
+            cup every batch and pack the bags that reach your counter. The same
+            hands are behind your coffee from the first cherry to the last scoop.
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }} /* stacked on ~300px phones — three columns there leave "365 days"

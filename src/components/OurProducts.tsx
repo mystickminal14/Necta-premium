@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
+import { contactLink } from "../lib/enquiry";
 import latteArt from "../assets/new/latte-art.jpg";
 import v60 from "../assets/new/v60.jpg";
 import coldbrew from "../assets/new/coldbrew.jpg";
@@ -12,24 +13,20 @@ import coldbrew from "../assets/new/coldbrew.jpg";
 
 interface Item {
   name: string;
-  blurb: string;
   img: string;
 }
 
 const ITEMS: Item[] = [
   {
     name: "Blend",
-    blurb: "Balanced and consistent — built for espresso and milk drinks, cup after cup.",
     img: latteArt,
   },
   {
     name: "Single Origin",
-    blurb: "Traceable Nepali lots with the character of one farm, one harvest.",
     img: v60,
   },
   {
     name: "Cold Brew",
-    blurb: "Slow-steeped and smooth, with a low-acid finish made for serving over ice.",
     img: coldbrew,
   },
 ];
@@ -45,8 +42,8 @@ function ProductCard({ item, i }: { item: Item; i: number }) {
       transition={{ duration: 0.7, delay: i * 0.1, ease: EASE }}
     >
       <Link
-        to="/product"
-        aria-label={`See our ${item.name} coffee`}
+        to={contactLink("beans", item.name)}
+        aria-label={`Inquire about our ${item.name} coffee`}
         className="group relative block overflow-hidden rounded-2xl border border-espresso/10 shadow-[0_20px_50px_-32px_rgba(36,19,8,0.7)] transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-caramel/40 hover:shadow-[0_34px_60px_-30px_rgba(36,19,8,0.65)] sm:rounded-[1.75rem]"
       >
         <div className="relative aspect-[3/4] overflow-hidden bg-cream-3">
@@ -61,15 +58,15 @@ function ProductCard({ item, i }: { item: Item; i: number }) {
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-espresso via-espresso/70 to-transparent px-4 pb-4 pt-20 sm:px-5 sm:pb-5 sm:pt-24">
             <div className="flex items-end justify-between gap-3">
               <div className="min-w-0">
-                {/* Cormorant Garamond runs small for its point size, so this
-                    is sized up to sit level with the rest of the card */}
-                <h3 className="font-display text-2xl font-semibold leading-tight text-cream sm:text-[1.7rem]">
+                {/* the one place the display serif is used — Cormorant runs small for
+                    its point size, hence the bump */}
+                <h3 className="font-display text-[1.9rem] font-semibold leading-tight text-cream sm:text-[2.35rem]">
                   {item.name}
                 </h3>
-                {/* blurb stays folded away until hover on pointer devices, and is
-                    always visible on touch where there is no hover to discover */}
-                <p className="mt-1.5 text-[0.8rem] leading-relaxed text-cream/70 sm:mt-2 sm:max-h-0 sm:overflow-hidden sm:opacity-0 sm:transition-all sm:duration-500 sm:ease-[cubic-bezier(0.16,1,0.3,1)] sm:group-hover:max-h-24 sm:group-hover:opacity-100">
-                  {item.blurb}
+                {/* the call to action replaces the description on hover —
+                    folded away on pointer devices, always shown on touch */}
+                <p className="mt-1.5 text-[0.95rem] font-semibold text-caramel-light sm:mt-2 sm:max-h-0 sm:overflow-hidden sm:opacity-0 sm:transition-all sm:duration-500 sm:ease-[cubic-bezier(0.16,1,0.3,1)] sm:group-hover:max-h-12 sm:group-hover:opacity-100">
+                  Inquire Now
                 </p>
               </div>
               <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-caramel text-espresso transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-45 sm:h-10 sm:w-10">
@@ -90,21 +87,12 @@ export default function OurProducts() {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="font-hand text-2xl text-caramel sm:text-3xl"
-          >
-            roasted in nepal
-          </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.8, ease: EASE }}
-            className="mt-2 text-[clamp(1.75rem,5.6vw,3.4rem)] font-semibold leading-tight text-espresso"
+            className="text-[clamp(1.75rem,5.6vw,3.4rem)] font-semibold leading-tight text-espresso"
           >
             Our <span className="text-caramel">Products</span>
           </motion.h2>

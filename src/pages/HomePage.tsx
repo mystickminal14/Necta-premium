@@ -15,10 +15,12 @@ export default function HomePage() {
       <About />
       <BeansBand />
       <BeansChosen />
+      {/* the roast picker and the process story belong together — how the
+          beans are handled follows straight on from choosing a profile */}
+      <Process />
       <OurProducts />
       <Testimonials />
       <OurStory />
-      <Process />
       <VideoSection />
     </>
   );

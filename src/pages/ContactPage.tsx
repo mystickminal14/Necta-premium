@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Clock, Send, CheckCircle2 } from "lucide-react";
+import { Mail, MapPin, Phone, Clock, Send, CheckCircle2, Tag } from "lucide-react";
 import PageHeader from "../components/PageHeader";
+import { readPurpose } from "../lib/enquiry";
 import Faq from "../components/Faq";
 import type { QA } from "../components/Faq";
 
 const INFO = [
   { icon: <MapPin className="h-5 w-5" />, label: "Visit us", value: "Jhamsikhel 08, Lalitpur MNC, Nepal" },
-  { icon: <Mail className="h-5 w-5" />, label: "Email us", value: "nectacoffeept@gmail.com", href: "mailto:nectacoffeept@gmail.com" },
+  { icon: <Mail className="h-5 w-5" />, label: "Email us", value: "info@nectacoffeenepal.com", href: "mailto:info@nectacoffeenepal.com" },
   { icon: <Phone className="h-5 w-5" />, label: "Call us", value: "+977 9849515304", href: "tel:+9779849515304" },
   { icon: <Clock className="h-5 w-5" />, label: "Roastery hours", value: "Sun–Fri · 9am – 6pm" },
 ];
@@ -15,12 +17,23 @@ const INFO = [
 const FAQS: QA[] = [
   { q: "How quickly will you reply?", a: "We answer messages within one business day — usually much faster on Instagram DMs." },
   { q: "Can I visit the roastery?", a: "Yes! Drop by during roastery hours in Jhamsikhel, Lalitpur. Message ahead so we can have a fresh cup waiting for you." },
-  { q: "Do you supply cafés and offices in bulk?", a: "We do. Tell us your volume and preferred grade in the form and our wholesale team will send custom pricing." },
+  { q: "Do you supply cafes and offices in bulk?", a: "We do. Tell us your volume and preferred grade in the form and our wholesale team will send custom pricing." },
   { q: "Can I get a free sample?", a: "Absolutely — mention it in your message and we'll arrange a sample so you can taste before committing." },
 ];
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  /* CTAs across the site arrive here carrying ?about= (and sometimes
+     &item=), so the form can say what the enquiry is about instead of
+     making the visitor re-explain where they came from */
+  const [params] = useSearchParams();
+  const purpose = useMemo(() => readPurpose(params), [params]);
+
+  const [form, setForm] = useState(() => ({
+    name: "",
+    email: "",
+    subject: purpose?.subject ?? "",
+    message: "",
+  }));
   const [sent, setSent] = useState(false);
 
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -66,6 +79,17 @@ export default function ContactPage() {
               <form onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
                 <h2 className="text-2xl font-bold text-espresso">Send us a message</h2>
                 <p className="mt-1 text-sm text-espresso/55">Fill in the form and we&apos;ll be in touch shortly.</p>
+
+                {purpose && (
+                  <div className="mt-5 rounded-2xl border border-caramel/30 bg-caramel/10 p-4">
+                    <p className="flex items-center gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-bean">
+                      <Tag className="h-3.5 w-3.5" />
+                      You&apos;re enquiring about
+                    </p>
+                    <p className="mt-1 text-base font-bold text-espresso">{purpose.label}</p>
+                    <p className="mt-1 text-[0.82rem] leading-relaxed text-espresso/60">{purpose.note}</p>
+                  </div>
+                )}
 
                 <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <Field label="Your name">
@@ -127,7 +151,7 @@ export default function ContactPage() {
               <div className="min-w-0">
                 <p className="text-[0.7rem] uppercase tracking-[0.15em] text-espresso/45">{it.label}</p>
                 {it.href ? (
-                  <a href={it.href} className="inline-block min-h-6 break-words py-0.5 text-sm font-semibold text-espresso transition-colors hover:text-caramel">{it.value}</a>
+                  <a href={it.href} className="block min-h-6 max-w-full break-words py-0.5 text-sm font-semibold text-espresso transition-colors hover:text-caramel">{it.value}</a>
                 ) : (
                   <p className="break-words text-sm font-semibold text-espresso">{it.value}</p>
                 )}

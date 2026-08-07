@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
+import { Quote, Star } from "lucide-react";
 import ScatterBeans from "./ScatterBeans";
+import ScrollPager from "./ScrollPager";
 import a54208 from "../assets/A54208.jpeg";
 import img0763 from "../assets/IMG_0763.jpg";
 import nectaBand from "../assets/necta-band.jpg";
@@ -9,56 +10,70 @@ import handheld from "../assets/new/handheld.jpg";
 /* ------------------------------------------------------------------ *
  * PLACEHOLDER CONTENT
  *
- * The client hasn't sent partner material yet, so everything below is a
- * stand-in shaped exactly like the real thing will be:
- *
- *   • CAFES  — swap `img` for the partner café photos.
- *   • VOICES — replace `quote`, and fill `name` with the person's name and
- *              `photo` with their headshot. Leave `photo` out and the card
- *              falls back to a monogram, so half-complete data still renders.
- *
- * Attribution is deliberately by role and city rather than an invented
- * person, so nothing here reads as a real endorsement before it is one.
+ * The client hasn't sent real reviews yet, so the six below are stand-ins
+ * shaped exactly like the real thing. Replace `quote`, `name` and `role`
+ * as they come in — attribution is deliberately by role and city rather
+ * than an invented person, so nothing reads as a real endorsement before
+ * it is one.
  * ------------------------------------------------------------------ */
 
-interface Cafe {
-  img: string;
-  label: string;
-}
-
-interface Voice {
+interface Review {
   quote: string;
   name: string;
   role: string;
-  photo?: string;
+  rating: number;
 }
 
-const CAFES: Cafe[] = [
-  { img: handheld, label: "Green beans, hand-sorted before the roast" },
-  { img: a54208, label: "Partner café — counter service" },
-  { img: img0763, label: "Partner café — espresso bar" },
-  { img: nectaBand, label: "Partner café — table service" },
-];
-
-const VOICES: Voice[] = [
+const REVIEWS: Review[] = [
   {
     quote:
       "The roast has been consistent from the first delivery, which means our baristas dial in once and pour the same shot all week.",
-    name: "Café Partner",
+    name: "Cafe Partner",
     role: "Owner · Kathmandu",
+    rating: 5,
   },
   {
     quote:
       "They walked us through grind, dose and machine setup before we opened. It felt less like a supplier and more like a team behind the counter.",
-    name: "Café Partner",
+    name: "Cafe Partner",
     role: "Head Barista · Pokhara",
+    rating: 5,
   },
   {
     quote:
       "Our regulars started asking where the beans come from. Being able to say a Nepali farm, by name, changed how we sell coffee.",
-    name: "Café Partner",
+    name: "Cafe Partner",
     role: "Founder · Lalitpur",
+    rating: 5,
   },
+  {
+    quote:
+      "The medium dark holds up beautifully in milk — the cocoa note still comes through in a 12oz latte, which is exactly what we needed.",
+    name: "Cafe Partner",
+    role: "Roastery Manager · Bhaktapur",
+    rating: 5,
+  },
+  {
+    quote:
+      "Bags arrive within days of roasting and the freshness shows in the bloom. We've stopped keeping a backup supplier.",
+    name: "Cafe Partner",
+    role: "Owner · Butwal",
+    rating: 5,
+  },
+  {
+    quote:
+      "We switched three outlets over in one month. Same cup in every one of them, which is the hardest part of running more than one counter.",
+    name: "Cafe Partner",
+    role: "Operations Lead · Chitwan",
+    rating: 4,
+  },
+];
+
+const CAFES = [
+  { img: handheld, label: "Green beans, hand-sorted before the roast" },
+  { img: a54208, label: "Partner cafe — counter service" },
+  { img: img0763, label: "Partner cafe — espresso bar" },
+  { img: nectaBand, label: "Partner cafe — table service" },
 ];
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -71,40 +86,43 @@ const monogram = (name: string) =>
     .slice(0, 2)
     .toUpperCase();
 
-function VoiceCard({ v, i }: { v: Voice; i: number }) {
+function Stars({ n }: { n: number }) {
   return (
-    <motion.figure
-      initial={{ opacity: 0, y: 26 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.7, delay: i * 0.1, ease: EASE }}
-      className="group flex h-full flex-col rounded-2xl border border-cream/10 bg-leaf-2/80 p-5 shadow-2xl backdrop-blur-sm transition-[transform,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-caramel/40 sm:p-6"
-    >
-      <Quote className="h-6 w-6 shrink-0 text-caramel-light/70" />
+    <span className="flex gap-0.5" aria-label={`${n} out of 5`}>
+      {[...Array(5)].map((_, i) => (
+        <Star
+          key={i}
+          className={`h-3.5 w-3.5 ${
+            i < n ? "fill-caramel-light text-caramel-light" : "text-cream/25"
+          }`}
+        />
+      ))}
+    </span>
+  );
+}
+
+function ReviewCard({ r }: { r: Review }) {
+  return (
+    <figure className="group flex h-full flex-col rounded-2xl border border-cream/10 bg-leaf-2/80 p-5 shadow-2xl backdrop-blur-sm transition-[transform,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:border-caramel/40 sm:p-6">
+      <div className="flex items-center justify-between gap-3">
+        <Stars n={r.rating} />
+        <Quote className="h-5 w-5 shrink-0 text-caramel-light/40" />
+      </div>
 
       <blockquote className="mt-3 flex-1 text-[0.92rem] leading-relaxed text-cream/80 sm:mt-4 sm:text-base">
-        {v.quote}
+        {r.quote}
       </blockquote>
 
       <figcaption className="mt-5 flex items-center gap-3 border-t border-cream/10 pt-4">
-        {v.photo ? (
-          <img
-            src={v.photo}
-            alt={v.name}
-            loading="lazy"
-            className="h-11 w-11 shrink-0 rounded-full object-cover"
-          />
-        ) : (
-          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-caramel/20 text-sm font-bold text-caramel-light">
-            {monogram(v.name)}
-          </span>
-        )}
+        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-caramel/20 text-[0.72rem] font-bold text-caramel-light">
+          {monogram(r.name)}
+        </span>
         <div className="min-w-0">
-          <p className="truncate text-sm font-bold text-cream">{v.name}</p>
-          <p className="truncate text-[0.78rem] text-cream/55">{v.role}</p>
+          <p className="truncate text-sm font-bold text-cream">{r.name}</p>
+          <p className="truncate text-[0.78rem] text-cream/55">{r.role}</p>
         </div>
       </figcaption>
-    </motion.figure>
+    </figure>
   );
 }
 
@@ -130,7 +148,7 @@ export default function Testimonials() {
             transition={{ duration: 0.6 }}
             className="font-hand text-2xl text-caramel-light sm:text-4xl"
           >
-            a taste of history in every cup
+            straight from the counter
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 28 }}
@@ -139,7 +157,7 @@ export default function Testimonials() {
             transition={{ duration: 0.8, ease: EASE }}
             className="mt-2 text-[clamp(1.75rem,5.6vw,3.6rem)] font-bold leading-[1.08]"
           >
-            From Our Roastery, <span className="text-caramel-light">To Your Hands.</span>
+            Customer <span className="text-caramel-light">Reviews</span> of Our Beans
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 14 }}
@@ -148,13 +166,39 @@ export default function Testimonials() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mx-auto mt-4 max-w-xl text-[0.95rem] leading-relaxed text-cream/65 sm:text-lg"
           >
-            The cafés pouring Necta are the ones who keep us honest — here's what
-            it's like working with us.
+            What the cafes pouring Necta say about the beans — in their own words.
           </motion.p>
         </div>
 
+        {/* REVIEWS — a carousel on phones, a masonry wall from md up so
+            uneven quote lengths pack together instead of leaving ragged
+            gaps at the foot of a rigid grid */}
+        <div className="mt-10 sm:mt-12 md:hidden">
+          <ScrollPager label="Customer reviews" itemClass="w-[86%] min-[480px]:w-[60%]">
+            {REVIEWS.map((r) => (
+              <ReviewCard key={r.role} r={r} />
+            ))}
+          </ScrollPager>
+        </div>
+
+        <div className="mt-12 hidden gap-5 md:block md:columns-2 lg:columns-3">
+          {REVIEWS.map((r, i) => (
+            <motion.div
+              key={r.role}
+              initial={{ opacity: 0, y: 26 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.7, delay: (i % 3) * 0.1, ease: EASE }}
+              /* break-inside keeps a card from being split across columns */
+              className="mb-5 break-inside-avoid"
+            >
+              <ReviewCard r={r} />
+            </motion.div>
+          ))}
+        </div>
+
         {/* CAFÉ PHOTOS — a scrolling strip on phones, a full row from sm up */}
-        <div className="mt-10 -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:mx-0 sm:mt-12 sm:grid sm:grid-cols-4 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 [&::-webkit-scrollbar]:hidden">
+        <div className="mt-10 -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:mx-0 sm:mt-14 sm:grid sm:grid-cols-4 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 [&::-webkit-scrollbar]:hidden">
           {CAFES.map((c, i) => (
             <motion.div
               key={c.img}
@@ -172,13 +216,6 @@ export default function Testimonials() {
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-leaf/80 via-transparent to-transparent" />
             </motion.div>
-          ))}
-        </div>
-
-        {/* TESTIMONIALS */}
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:mt-12 sm:gap-5 lg:grid-cols-3">
-          {VOICES.map((v, i) => (
-            <VoiceCard key={v.role} v={v} i={i} />
           ))}
         </div>
       </div>

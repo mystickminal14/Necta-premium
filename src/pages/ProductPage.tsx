@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -14,13 +13,11 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 import PageHeader from "../components/PageHeader";
-import Process from "../components/Process";
 import Faq from "../components/Faq";
 import type { QA } from "../components/Faq";
-import ScrollPager from "../components/ScrollPager";
-import AddToCartModal from "../components/AddToCartModal";
-import { useCart } from "../lib/cart";
-import { COMMERCIAL, POPULAR, PREMIUM, npr } from "../lib/products";
+import OriginCard from "../components/OriginCard";
+import { COMMERCIAL, ORIGINS, npr } from "../lib/products";
+import { contactLink } from "../lib/enquiry";
 import type { Product, Segment } from "../lib/products";
 import espresso3 from "../assets/espresso-3.jpg";
 import espresso2 from "../assets/espresso-2.jpg";
@@ -35,6 +32,7 @@ const BRUGNETTI_URL = "https://www.officinebrugnetti.com/EN/";
 
 interface Offer {
   title: string;
+  about: "dealership" | "collaboration";
   blurb: string;
   icon: ReactNode;
   points: { icon: ReactNode; label: string }[];
@@ -43,16 +41,18 @@ interface Offer {
 const OFFERS: Offer[] = [
   {
     title: "Dealership",
+    about: "dealership",
     blurb: "Carry Necta in your region — beans, hardware and the people to keep both running.",
     icon: <Store className="h-5 w-5" />,
     points: [
       { icon: <Coffee className="h-4 w-4" />, label: "Coffee" },
       { icon: <Settings2 className="h-4 w-4" />, label: "Coffee Equipment" },
-      { icon: <LifeBuoy className="h-4 w-4" />, label: "Support for Cafés" },
+      { icon: <LifeBuoy className="h-4 w-4" />, label: "Support for Cafes" },
     ],
   },
   {
     title: "Collaboration Branding",
+    about: "collaboration",
     blurb: "Your name on the bag, our roastery behind it — built around how your business serves coffee.",
     icon: <Handshake className="h-5 w-5" />,
     points: [
@@ -79,7 +79,7 @@ const MACHINES: Machine[] = [
   {
     name: "Brugnetti Luna",
     tag: "Premium",
-    blurb: "A commercial-grade espresso machine built for high-volume cafés — precise, powerful and reliable.",
+    blurb: "A commercial-grade espresso machine built for high-volume cafes — precise, powerful and reliable.",
     img: espresso3,
   },
   {
@@ -93,25 +93,12 @@ const MACHINES: Machine[] = [
 const FAQS: QA[] = [
   { q: "How fresh is the coffee when it ships?", a: "Every order is roasted in small batches and shipped within 48 hours of roasting, so your beans arrive at peak freshness." },
   { q: "Do you deliver across Nepal?", a: "Yes — we deliver nationwide. Kathmandu Valley orders typically arrive in 1–2 days; outside the valley takes 3–5 days." },
-  { q: "What grind options do you offer?", a: "We ship whole bean by default, but you can request espresso, moka, drip, or French-press grind in the order notes — free of charge." },
+  { q: "What grind options do you offer?", a: "We ship whole bean by default, but you can request espresso, moka, drip, or French-press grind when you enquire — free of charge." },
   { q: "Do the espresso machines come with a warranty?", a: "All Necta machines include a 1-year warranty covering manufacturing defects, plus local servicing support." },
   { q: "Can I order a sample before buying a full bag?", a: "Absolutely. Message us and we'll send a small sample so you can find the grade that suits your palate." },
 ];
 
 /* ---------------------------- pieces ---------------------------- */
-
-function SectionHead({ eyebrow, title, note }: { eyebrow: string; title: string; note?: string }) {
-  return (
-    <div className="mb-8 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
-      <div className="min-w-0">
-        <p className="font-hand text-xl text-caramel sm:text-2xl">{eyebrow}</p>
-        <h2 className="mt-0.5 text-[clamp(1.4rem,5vw,2.2rem)] font-semibold leading-tight text-espresso">{title}</h2>
-      </div>
-      {note && <p className="max-w-sm text-[0.82rem] leading-relaxed text-espresso/60">{note}</p>}
-      <span className="hidden h-px flex-1 basis-full bg-espresso/10 sm:block" />
-    </div>
-  );
-}
 
 function OfferCard({ o, i }: { o: Offer; i: number }) {
   return (
@@ -141,7 +128,7 @@ function OfferCard({ o, i }: { o: Offer; i: number }) {
       </ul>
 
       <Link
-        to="/contact"
+        to={contactLink(o.about)}
         className="mt-5 inline-flex items-center gap-2 self-start rounded-full bg-espresso px-5 py-2.5 text-[0.82rem] font-semibold text-cream transition-all duration-300 hover:scale-[1.03] hover:bg-espresso-2"
       >
         Enquire
@@ -211,20 +198,23 @@ function CardShell({
   );
 }
 
-function AddButton({ onClick, label }: { onClick: () => void; label: string }) {
+/* no checkout on the site — every "add" is an enquiry that lands on the
+   contact page with the product named in the aria-label */
+function AddButton({ label, product }: { label: string; product: string }) {
   return (
-    <button
-      onClick={onClick}
+    <Link
+      to={contactLink("beans", product)}
+      aria-label={`Enquire about ${product}`}
       className="mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-espresso px-4 py-2.5 text-[0.82rem] font-semibold text-cream transition-all duration-300 hover:scale-[1.02] hover:bg-espresso-2"
     >
       <Plus className="h-4 w-4" />
       {label}
-    </button>
+    </Link>
   );
 }
 
 /* full pack card — all three sizes priced, size chosen in the modal */
-function PackCard({ p, i, onAdd }: { p: Product; i: number; onAdd: (p: Product) => void }) {
+function PackCard({ p, i }: { p: Product; i: number }) {
   return (
     <CardShell p={p} i={i} badge={p.tag} badgeClass={ACCENT[p.segment]}>
       <dl className="mt-3 grid grid-cols-3 gap-1 border-t border-espresso/10 pt-3 text-center">
@@ -235,50 +225,28 @@ function PackCard({ p, i, onAdd }: { p: Product; i: number; onAdd: (p: Product) 
           </div>
         ))}
       </dl>
-      <AddButton onClick={() => onAdd(p)} label="Add to cart" />
+      <AddButton label="Add to cart" product={p.name} />
     </CardShell>
   );
 }
 
-function Group({ eyebrow, title, note, items, grid, onAdd }: { eyebrow: string; title: string; note?: string; items: Product[]; grid: string; onAdd: (p: Product) => void }) {
+function Group({ eyebrow, title, note, items, grid }: { eyebrow: string; title: string; note?: string; items: Product[]; grid: string }) {
   return (
     <div>
       <div className="mb-6 flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
         <div className="min-w-0">
           <p className="font-hand text-xl text-caramel sm:text-2xl">{eyebrow}</p>
-          <h3 className="mt-0.5 text-[clamp(1.3rem,4.4vw,2rem)] font-semibold leading-tight text-espresso">{title}</h3>
+          <h3 className="mt-0.5 text-[clamp(1.6rem,5.4vw,3rem)] font-semibold leading-tight text-espresso">{title}</h3>
         </div>
         {note && <p className="max-w-xs text-[0.82rem] leading-relaxed text-espresso/60">{note}</p>}
         <span className="hidden h-px flex-1 basis-full bg-espresso/10 sm:block" />
       </div>
       <div className={`grid gap-4 sm:gap-5 ${grid}`}>
         {items.map((p, i) => (
-          <PackCard key={p.id} p={p} i={i} onAdd={onAdd} />
+          <PackCard key={p.id} p={p} i={i} />
         ))}
       </div>
     </div>
-  );
-}
-
-/* popular card — the 1 kg bag, added straight to the cart */
-function BeanCard({ p, i }: { p: Product; i: number }) {
-  const { add, setOpen } = useCart();
-  const kilo = p.packs.find((pk) => pk.kg === 1) ?? p.packs[0];
-
-  return (
-    <CardShell p={p} i={i} badge={kilo.size} badgeClass="bg-caramel text-espresso" reveal={false}>
-      <div className="mt-3 flex items-baseline justify-between gap-2 border-t border-espresso/10 pt-3">
-        <span className="text-[0.62rem] font-medium uppercase tracking-wide text-espresso/55">{kilo.size}</span>
-        <span className="text-base font-bold tabular-nums text-espresso">{npr(kilo.price)}</span>
-      </div>
-      <AddButton
-        onClick={() => {
-          add(p, kilo, 1);
-          setOpen(true);
-        }}
-        label={`Add ${kilo.size} bag`}
-      />
-    </CardShell>
   );
 }
 
@@ -313,9 +281,6 @@ function MachineCard({ m, i }: { m: Machine; i: number }) {
 /* ---------------------------- page ---------------------------- */
 
 export default function ProductPage() {
-  /* the product whose size/quantity sheet is open, if any */
-  const [adding, setAdding] = useState<Product | null>(null);
-
   return (
     <>
       <PageHeader
@@ -356,7 +321,7 @@ export default function ProductPage() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="mx-auto mt-4 max-w-xl text-[0.95rem] leading-relaxed text-espresso/60 sm:text-base"
             >
-              Bring Necta to your city — beans, equipment and café support under one
+              Bring Necta to your city — beans, equipment and cafe support under one
               roof, or a coffee programme built around your own brand.
             </motion.p>
           </div>
@@ -374,40 +339,36 @@ export default function ProductPage() {
         <div className="grain absolute inset-0" />
         <div className="relative mx-auto max-w-6xl px-4 sm:px-8">
           <div className="space-y-14 sm:space-y-16">
-            <Group
-              eyebrow="premium segment"
-              title="Speciality & House Blend"
-              note="Graded, single-origin lots roasted to the profile you choose — City through Full City Plus."
-              items={PREMIUM}
-              grid="max-w-2xl grid-cols-1 min-[480px]:grid-cols-2"
-              onAdd={setAdding}
-            />
+            {/* SINGLE ORIGIN — districts, not SKUs: no pricing or roast
+                profiles, the detail lives in the card overlay */}
+            <div>
+              <div className="mb-6 flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+                <div className="min-w-0">
+                  <p className="font-hand text-xl text-caramel sm:text-2xl">where it grows</p>
+                  <h3 className="mt-0.5 text-[clamp(1.6rem,5.4vw,3rem)] font-semibold leading-tight text-espresso">
+                    Single Origin <span className="text-caramel">Beans</span>
+                  </h3>
+                </div>
+                <p className="max-w-xs text-[0.82rem] leading-relaxed text-espresso/60">
+                  Traceable lots from three growing districts — hover a card for the story behind it.
+                </p>
+                <span className="hidden h-px flex-1 basis-full bg-espresso/10 sm:block" />
+              </div>
+              <div className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+                {ORIGINS.map((o, i) => (
+                  <OriginCard key={o.id} o={o} i={i} />
+                ))}
+              </div>
+            </div>
+
             <Group
               eyebrow="everyday commercial"
               title="Commercial Beans"
-              note="Consistent medium roasts built for cafés, kitchens and daily drinking."
+              note="Consistent medium roasts built for cafes, kitchens and daily drinking."
               items={COMMERCIAL}
               grid="grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-3"
-              onAdd={setAdding}
             />
           </div>
-        </div>
-      </section>
-
-      {/* MOST POPULAR SELLINGS */}
-      <section className="relative overflow-hidden bg-cream-2 py-14 sm:py-20">
-        <div className="grain absolute inset-0" />
-        <div className="relative mx-auto max-w-6xl px-4 sm:px-8">
-          <SectionHead
-            eyebrow="straight off the roaster"
-            title="Most Popular Sellings"
-            note="Our fastest-moving 1 kg bags — the ones cafés reorder without thinking twice."
-          />
-          <ScrollPager label="Most popular coffees">
-            {POPULAR.map((p, i) => (
-              <BeanCard key={p.id} p={p} i={i} />
-            ))}
-          </ScrollPager>
         </div>
       </section>
 
@@ -432,7 +393,7 @@ export default function ProductPage() {
               transition={{ duration: 0.8, ease: EASE }}
               className="mt-2 text-[clamp(1.6rem,5.4vw,3rem)] font-semibold leading-tight text-espresso"
             >
-              Equipment Solution for <span className="text-caramel">Your Café</span>
+              Equipment Solution for <span className="text-caramel">Your Cafe</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 14 }}
@@ -441,7 +402,7 @@ export default function ProductPage() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="mt-3 text-[1.02rem] font-semibold text-espresso/75 sm:text-lg"
             >
-              Opening a Café? We&apos;ve Got Your Back.
+              Opening a Cafe? We&apos;ve Got Your Back.
             </motion.p>
           </div>
 
@@ -458,15 +419,24 @@ export default function ProductPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-10 flex flex-col items-center gap-3 text-center"
           >
-            <a
-              href={BRUGNETTI_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full bg-espresso px-6 py-3.5 text-[0.85rem] font-semibold text-cream transition-all duration-300 hover:scale-[1.03] hover:bg-espresso-2 sm:text-base"
-            >
-              Explore more machines
-              <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </a>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <Link
+                to={contactLink("machines")}
+                className="inline-flex items-center gap-2 rounded-full bg-espresso px-6 py-3.5 text-[0.85rem] font-semibold text-cream transition-all duration-300 hover:scale-[1.03] hover:bg-espresso-2 sm:text-base"
+              >
+                Inquire Now
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <a
+                href={BRUGNETTI_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 rounded-full border border-espresso/25 px-6 py-3.5 text-[0.85rem] font-semibold text-espresso transition-all duration-300 hover:border-espresso hover:bg-espresso/5 sm:text-base"
+              >
+                Explore more machines
+                <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+            </div>
             <p className="text-[0.82rem] text-espresso/55">
               Full range on Officine Brugnetti — tell us what you need and we&apos;ll source it.
             </p>
@@ -474,12 +444,7 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* how we do it — From Farm To Cup */}
-      <Process />
-
       <Faq items={FAQS} eyebrow="before you buy" image={nectaFaq} />
-
-      <AddToCartModal product={adding} onClose={() => setAdding(null)} />
     </>
   );
 }

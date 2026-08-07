@@ -65,10 +65,10 @@ const ROASTS: Roast[] = [
   {
     id: "medium",
     label: "Medium Roast",
-    band: { bg: "#b07a3c", fg: "#f4ecdd" },
+    band: { bg: "#41627d", fg: "#f4ecdd" },
     tint: "none",
-    glow: "rgba(176,122,60,0.34)",
-    wash: "radial-gradient(58% 48% at 50% 42%, rgba(176,122,60,0.22), transparent 72%)",
+    glow: "rgba(65,98,125,0.38)",
+    wash: "radial-gradient(58% 48% at 50% 42%, rgba(65,98,125,0.26), transparent 72%)",
     left: [
       { icon: <Citrus className={ic} />, top: "Acidity", title: "Medium Acidity" },
       { icon: <Droplets className={ic} />, top: "Body", title: "Medium Body" },
@@ -325,7 +325,7 @@ const Heading = () => (
       transition={{ duration: 0.6 }}
       className="font-hand text-2xl text-caramel-light sm:text-3xl"
     >
-Choose Your Roast    </motion.p>
+pick your profile    </motion.p>
     <motion.h2
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -333,7 +333,7 @@ Choose Your Roast    </motion.p>
       transition={{ duration: 0.7, ease: EASE }}
       className="mt-1 text-[clamp(1.5rem,5.4vw,3.2rem)] font-bold leading-tight text-cream"
     >
-      Everything You Need <br/><span className="text-caramel-light">For Your Café</span>
+      Choose Your <span className="text-caramel-light">Roast Profile</span>
     </motion.h2>
   </div>
 );

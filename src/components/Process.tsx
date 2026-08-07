@@ -1,6 +1,38 @@
 import { motion } from "framer-motion";
 import { Sprout, Settings, Flame, Package, Truck } from "lucide-react";
 import type { ReactNode } from "react";
+import bean from "../assets/bean.png";
+
+/* small beans drifting down either margin — decorative only, and kept
+   clear of the content column so they never sit under the copy */
+const SIDE_BEANS = [
+  { top: "8%", left: "3%", w: 34, rot: -20, dur: 9 },
+  { top: "34%", left: "6%", w: 24, rot: 55, dur: 11 },
+  { top: "62%", left: "2%", w: 30, rot: 130, dur: 10 },
+  { top: "86%", left: "7%", w: 20, rot: -60, dur: 12 },
+  { top: "12%", right: "4%", w: 28, rot: 35, dur: 10.5 },
+  { top: "40%", right: "2%", w: 34, rot: -15, dur: 9.5 },
+  { top: "68%", right: "6%", w: 22, rot: 100, dur: 11.5 },
+  { top: "90%", right: "3%", w: 30, rot: -45, dur: 8.5 },
+];
+
+function SideBeans() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 hidden overflow-hidden md:block">
+      {SIDE_BEANS.map((b, i) => (
+        <motion.img
+          key={i}
+          src={bean}
+          alt=""
+          animate={{ y: [0, -14, 0], rotate: [b.rot, b.rot + 10, b.rot] }}
+          transition={{ duration: b.dur, repeat: Infinity, ease: "easeInOut" }}
+          style={{ top: b.top, left: b.left, right: b.right, width: b.w }}
+          className="absolute opacity-40 drop-shadow-[0_10px_18px_rgba(36,19,8,0.35)]"
+        />
+      ))}
+    </div>
+  );
+}
 
 const STEPS: { icon: ReactNode; step: string; title: string; desc: string }[] = [
   { icon: <Sprout className="h-5 w-5 sm:h-6 sm:w-6" />, step: "01", title: "Handpicked", desc: "Ripest cherries selected by hand at altitude." },
@@ -26,6 +58,7 @@ export default function Process() {
   return (
     <section id="process" className="relative overflow-hidden bg-cream-2 py-16 sm:py-20 md:py-28">
       <div className="grain absolute inset-0" />
+      <SideBeans />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="font-hand text-2xl text-caramel sm:text-3xl">

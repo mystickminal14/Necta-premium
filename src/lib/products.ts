@@ -6,7 +6,7 @@ import nectaPeak from "../assets/necta-peak.jpg";
 
 /* ------------------------------------------------------------------ *
  * The single source of truth for the coffee catalogue. Prices live here
- * as numbers so the cart can do arithmetic on them — render them with
+ * as numbers so totals stay easy to compute — render them with
  * `npr()` rather than hard-coding "Rs" anywhere.
  * ------------------------------------------------------------------ */
 
@@ -63,7 +63,7 @@ export const PRODUCTS: Product[] = [
     segment: "commercial",
     roast: "Medium · Medium Dark",
     tag: "Flagship",
-    blurb: "Our flagship commercial roast — rich, rounded and dialled in for cafés and busy kitchens.",
+    blurb: "Our flagship commercial roast — rich, rounded and dialled in for cafes and busy kitchens.",
     img: nectaSpecial,
     packs: packs(3000, 1600, 850),
   },
@@ -89,31 +89,56 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
-export const PREMIUM = PRODUCTS.filter((p) => p.segment === "premium");
 export const COMMERCIAL = PRODUCTS.filter((p) => p.segment === "commercial");
 
 /* ------------------------------------------------------------------ *
- * Most Popular Sellings — sold as 1 kg bags. The client is still
- * deciding which varieties make the cut, so this list of ids is the only
- * thing that needs editing; the carousel pages itself.
+ * Single Origin Beans — the three growing districts we buy from.
+ *
+ * Deliberately no pricing, pack sizes or roast profiles: these are shown
+ * as origins, not SKUs, and enquiries go through the contact page.
+ *
+ * PLACEHOLDER COPY — `blurb` and `notes` are written to shape only. Swap
+ * them for the client's real cupping notes when they land; altitude and
+ * harvest figures are intentionally left out rather than guessed at.
  * ------------------------------------------------------------------ */
-export const POPULAR_IDS = [
-  "speciality",
-  "house-blend",
-  "necta-special",
-  "valley-classic",
-  "peak-strong",
+
+export interface Origin {
+  id: string;
+  name: string;
+  region: string;
+  blurb: string;
+  notes: string[];
+  img: string;
+}
+
+export const ORIGINS: Origin[] = [
+  {
+    id: "nuwakot",
+    name: "Nuwakot",
+    region: "Bagmati Province",
+    blurb:
+      "Grown on the hill slopes north-west of the valley, where cool nights slow the cherry and build sweetness in the cup.",
+    notes: ["Hill-grown", "Washed", "Smooth & sweet"],
+    img: nectaSpeciality,
+  },
+  {
+    id: "sindhupalchowk",
+    name: "Sindhupalchowk",
+    region: "Bagmati Province",
+    blurb:
+      "Smallholder plots along the high river valleys, hand-picked in small lots and processed close to where they grow.",
+    notes: ["Smallholder lots", "Hand-picked", "Bright & clean"],
+    img: nectaHouse,
+  },
+  {
+    id: "kavre",
+    name: "Kavre",
+    region: "Bagmati Province",
+    blurb:
+      "Terraced farms east of Kathmandu with a long-standing coffee tradition — dependable lots with a rounded, balanced profile.",
+    notes: ["Terraced farms", "Traceable", "Balanced body"],
+    img: nectaValley,
+  },
 ];
 
-/* an id with no matching product is simply skipped, so a typo in the list
-   above drops one card rather than crashing the page */
-export const POPULAR: Product[] = POPULAR_IDS.flatMap((id) => {
-  const found = PRODUCTS.find((p) => p.id === id);
-  return found ? [found] : [];
-});
-
 export const npr = (n: number) => `Rs ${n.toLocaleString("en-IN")}`;
-
-/* 3.5 → "3.5 kg", 3 → "3 kg" */
-export const kgLabel = (kg: number) =>
-  `${Number(kg.toFixed(2))} kg`;

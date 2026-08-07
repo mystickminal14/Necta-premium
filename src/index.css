@@ -5,7 +5,8 @@
   /* Helvetica first, Inter as the closest free fallback */
   --font-sans: "Helvetica Neue", Helvetica, "Inter", Arial, sans-serif;
   --font-hand: "Caveat", cursive;
-  /* display serif for section headlines */
+  /* display serif — used only on the home-page product cards
+     (Blend / Single Origin / Cold Brew); everything else is --font-sans */
   --font-display: "Cormorant Garamond", "Times New Roman", serif;
 
   --color-cream: #f4ecdd;
