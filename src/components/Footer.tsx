@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MessageCircle, Mail, MapPin, Phone, ArrowUpRight, Send } from "lucide-react";
 import beansTexture from "../assets/beans-texture.webp";
+import nectaLogo from "../assets/necta-logo-light.png";
 
 function Instagram({ className = "" }: { className?: string }) {
   return (
@@ -71,10 +72,7 @@ export default function Footer() {
             details down to ~105px and clip the email address */}
         <div className="grid grid-cols-1 gap-10 py-12 min-[420px]:grid-cols-2 sm:grid-cols-4">
           <div className="min-[420px]:col-span-2 sm:col-span-1">
-            <p className="flex items-baseline gap-1.5 leading-none">
-              <span className="font-hand text-3xl text-caramel-light">Necta</span>
-              <span className="text-lg font-bold uppercase tracking-[0.22em] text-cream">Coffee</span>
-            </p>
+            <img src={nectaLogo} alt="Necta Coffee" className="h-14 w-auto" />
             <p className="mt-4 max-w-xs text-sm text-cream/50">
               Handpicked from Nepal&apos;s finest farms. Small-batch roasted, delivered fresh.
             </p>

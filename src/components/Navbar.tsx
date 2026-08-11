@@ -2,23 +2,13 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle } from "lucide-react";
+import nectaLogo from "../assets/necta-logo-transparent.png";
 
 const LINKS = [
   { label: "Home", to: "/" },
   { label: "Product", to: "/product" },
   { label: "Contact", to: "/contact" },
 ];
-
-function Wordmark({ className = "" }: { className?: string }) {
-  return (
-    <span className={`flex items-baseline gap-1.5 leading-none ${className}`}>
-      <span className="font-hand text-[1.6rem] text-caramel sm:text-[1.8rem]">Necta</span>
-      <span className="text-base font-bold uppercase tracking-[0.22em] text-espresso sm:text-lg">
-        Coffee
-      </span>
-    </span>
-  );
-}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -49,9 +39,10 @@ export default function Navbar() {
             : "border-espresso/5 bg-cream/40 backdrop-blur-md",
         ].join(" ")}
       >
-        {/* wordmark logo */}
-        <Link to="/" className="flex shrink-0 items-center pl-1">
-          <Wordmark />
+        {/* logo — box height stays fixed so it doesn't push the pill taller;
+            the image itself is larger and overflows the box visually */}
+        <Link to="/" className="flex h-9 shrink-0 items-center pl-1 sm:h-10">
+          <img src={nectaLogo} alt="Necta Coffee" className="h-14 w-auto sm:h-16" />
         </Link>
 
         {/* desktop links */}
