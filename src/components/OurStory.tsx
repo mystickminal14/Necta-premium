@@ -1,13 +1,6 @@
 import { motion } from "framer-motion";
 import a54208 from "../assets/a54208.webp";
 
-/* kept in step with the hero stats — change both together */
-const STATS: [string, string][] = [
-  ["10+", "Working With Farmers"],
-  ["100%", "Quality Control"],
-  ["365 days", "Consistency"],
-];
-
 export default function OurStory() {
   return (
     <section id="story" className="relative overflow-hidden bg-espresso py-20 text-cream sm:py-28">
@@ -44,36 +37,17 @@ export default function OurStory() {
           </motion.h2>
 
           <motion.p initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }} className="mt-6 max-w-md text-base leading-relaxed text-cream/65">
-            At Necta Coffee, extraordinary coffee begins long before roasting. Every bean is carefully sourced, evaluated, and packed to preserve its unique character.
+            Necta runs on a small team out of Jhamsikhel, Lalitpur. No middlemen, no borrowed labels — we buy the cherries, cup the lots, roast the batches and seal the bags ourselves.
           </motion.p>
           <motion.p initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }} className="mt-4 max-w-md text-base leading-relaxed text-cream/65">
-            From dedicated farmers to skilled roasters — every step reflects our commitment to quality.
+            Every season we go up to the farms ourselves, taste what the harvest gave us, and pay for the lots we would want to drink. What does not make the cupping table does not make the bag.
           </motion.p>
           <motion.p initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.28 }} className="mt-4 max-w-md text-base leading-relaxed text-cream/65">
-            We are a small team in Jhamsikhel — the people who visit the farms,
-            cup every batch and pack the bags that reach your counter. The same
-            hands are behind your coffee from the first cherry to the last scoop.
+            Roasting happens in small batches, close to the day it ships. The
+            same hands are behind your coffee from the first cherry to the last
+            scoop, so what reaches your counter still tastes like the hill it
+            came from.
           </motion.p>
-
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }} /* stacked on ~300px phones — three columns there leave "365 days"
-   too narrow and it spills past the screen edge */
-            className="mt-10 grid grid-cols-1 gap-y-5 border-t border-cream/10 pt-7 min-[400px]:grid-cols-3 min-[400px]:gap-y-0">
-            {STATS.map(([n, l], i) => (
-              <div
-                key={l}
-                className={[
-                  "min-[400px]:px-4",
-                  i === 0 ? "min-[400px]:pl-0" : "",
-                  i === STATS.length - 1
-                    ? "min-[400px]:pr-0"
-                    : "min-[400px]:border-r min-[400px]:border-cream/10",
-                ].join(" ")}
-              >
-                <div className="text-[clamp(1.4rem,2.5vw,2rem)] font-bold leading-none text-caramel-light">{n}</div>
-                <div className="mt-2 text-[0.65rem] uppercase tracking-[0.12em] text-cream/45">{l}</div>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </div>
     </section>
