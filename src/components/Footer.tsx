@@ -31,7 +31,7 @@ export default function Footer() {
 
       {/* TOP — newsletter / CTA */}
       <div className="relative mx-auto max-w-7xl px-5 pt-16 sm:px-8 sm:pt-20">
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
@@ -65,7 +65,7 @@ export default function Footer() {
             </div>
             {sent && <p className="mt-2 pl-4 text-xs text-caramel-light">Thanks — you&apos;re on the list! ☕</p>}
           </form>
-        </motion.div>
+        </motion.div> */}
 
         {/* MIDDLE — columns */}
         {/* single column first — two columns at ~300px squeeze the contact
