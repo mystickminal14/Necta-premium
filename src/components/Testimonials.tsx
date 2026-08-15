@@ -165,7 +165,7 @@ export default function Testimonials() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mx-auto mt-4 max-w-xl text-[0.95rem] leading-relaxed text-cream/65 sm:text-lg"
           >
-            What the cafes pouring Necta say about the beans — in their own words.
+            What the cafes pouring Necta say about the beans <br /> in their own words.
           </motion.p>
         </div>
 
