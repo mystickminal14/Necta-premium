@@ -72,9 +72,21 @@ export default function Footer() {
             details down to ~105px and clip the email address */}
         <div className="grid grid-cols-1 gap-10 py-12 min-[420px]:grid-cols-2 sm:grid-cols-4">
           <div className="min-[420px]:col-span-2 sm:col-span-1">
-            <img src={nectaLogo} alt="Necta Coffee" className="h-14 w-auto" />
+            {/* logo sits on a dark, textured ground — a faint caramel bloom
+                behind it keeps the mark from reading as a flat cut-out */}
+            <Link to="/" aria-label="Necta Coffee — home" className="group relative inline-flex">
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -inset-6 rounded-full bg-caramel/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
+              />
+              <img
+                src={nectaLogo}
+                alt="Necta Coffee"
+                className="relative -ml-1 h-20 w-auto drop-shadow-[0_10px_24px_rgba(0,0,0,0.45)] transition-transform duration-300 group-hover:-translate-y-0.5 sm:h-24"
+              />
+            </Link>
             <p className="mt-4 max-w-xs text-sm text-cream/50">
-              Handpicked from Nepal&apos;s finest farms. Small-batch roasted, delivered fresh.
+              Harvested from Nepal&apos;s finest farms. Freshly roasted, delivered fresh.
             </p>
             <div className="mt-5 flex gap-3">
               <a href="https://www.instagram.com/nectacoffeepvt.ltd/" target="_blank" rel="noreferrer" className="grid h-9 w-9 place-items-center rounded-full bg-cream/10 transition-colors hover:bg-caramel hover:text-espresso">

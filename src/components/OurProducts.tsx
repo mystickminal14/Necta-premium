@@ -103,7 +103,7 @@ export default function OurProducts() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mx-auto mt-4 max-w-xl text-[0.95rem] leading-relaxed text-espresso/60 sm:text-base"
           >
-            Three ways to serve Necta — each roasted in small batches and packed
+            Three ways to serve Necta — each roasted in absolute consistency  and packed
             fresh for the counter it ends up on.
           </motion.p>
         </div>

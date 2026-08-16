@@ -35,11 +35,11 @@ function SideBeans() {
 }
 
 const STEPS: { icon: ReactNode; step: string; title: string; desc: string }[] = [
-  { icon: <Sprout className="h-5 w-5 sm:h-6 sm:w-6" />, step: "01", title: "Handpicked", desc: "Ripest cherries selected by hand at altitude." },
+  { icon: <Sprout className="h-5 w-5 sm:h-6 sm:w-6" />, step: "01", title: "Group Harvested", desc: "Cherries collected together from our partner farms." },
   { icon: <Settings className="h-5 w-5 sm:h-6 sm:w-6" />, step: "02", title: "Processed", desc: "Washed & natural processing preserves origin character." },
-  { icon: <Flame className="h-5 w-5 sm:h-6 sm:w-6" />, step: "03", title: "Roasted", desc: "Small-batch. Every profile cupped for perfection." },
-  { icon: <Package className="h-5 w-5 sm:h-6 sm:w-6" />, step: "04", title: "Freshly Packed", desc: "Nitrogen-sealed immediately after roasting." },
-  { icon: <Truck className="h-5 w-5 sm:h-6 sm:w-6" />, step: "05", title: "Delivered", desc: "From our roastery to your door — freshness intact." },
+  { icon: <Flame className="h-5 w-5 sm:h-6 sm:w-6" />, step: "03", title: "Roasted", desc: "Every profile cupped and dialled in for perfection." },
+  { icon: <Package className="h-5 w-5 sm:h-6 sm:w-6" />, step: "04", title: "Freshly Packed", desc: "Sealed the same day it comes off the roaster." },
+  { icon: <Truck className="h-5 w-5 sm:h-6 sm:w-6" />, step: "05", title: "Delivered", desc: "From our roastery to your café — freshness intact." },
 ];
 
 const EASE = [0.16, 1, 0.3, 1] as const;
