@@ -1,8 +1,9 @@
 import nectaSpeciality from "../assets/necta-speciality.webp";
 import nectaHouse from "../assets/necta-house.webp";
-import nectaSpecial from "../assets/necta-special.webp";
-import nectaValley from "../assets/necta-valley.webp";
-import nectaPeak from "../assets/necta-peak.webp";
+import nectaValleyOrigin from "../assets/necta-valley.webp";
+import nectaSpecial from "../assets/necta-special-new.png";
+import nectaValley from "../assets/necta-valley-new.png";
+import nectaPeak from "../assets/necta-peak-new.png";
 
 /* ------------------------------------------------------------------ *
  * The single source of truth for the coffee catalogue. Prices live here
@@ -137,7 +138,7 @@ export const ORIGINS: Origin[] = [
     blurb:
       "Terraced farms east of Kathmandu with a long-standing coffee tradition — dependable lots with a rounded, balanced profile.",
     notes: ["Terraced farms", "Traceable", "Balanced body"],
-    img: nectaValley,
+    img: nectaValleyOrigin,
   },
 ];
 

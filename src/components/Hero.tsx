@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
 import ScatterBeans from "./ScatterBeans";
-import hero from "../assets/hero-pouches-dark.webp";
+import hero from "../assets/hero-pouches-new.png";
 import bean from "../assets/bean.webp";
 
 const STATS: [string, string][] = [
