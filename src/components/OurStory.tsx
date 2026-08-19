@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import teamPhoto from "../assets/necta-barista.webp";
+import teamPhoto from "../assets/necta-team.webp";
 
 export default function OurStory() {
   return (
@@ -18,11 +18,12 @@ export default function OurStory() {
           className="relative mx-auto w-full max-w-xl"
         >
           <div className="overflow-hidden rounded-[2rem] shadow-[0_30px_80px_-25px_rgba(0,0,0,0.8)]">
+            {/* group photo is landscape — 4/3 keeps everyone in frame */}
             <img
               src={teamPhoto}
-              alt="A Necta Coffee barista pulling espresso behind the counter"
+              alt="The Necta Coffee team at the roastery in Jhamsikhel, Lalitpur"
               loading="lazy"
-              className="aspect-[16/9] w-full object-cover"
+              className="aspect-4/3 w-full object-cover"
             />
           </div>
         </motion.div>

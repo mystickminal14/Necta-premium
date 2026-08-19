@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import bag from "../assets/new/uses.webp";
+import bag from "../assets/necta-barista.webp";
 import beansTexture from "../assets/beans-texture.webp";
 
 export default function About() {
