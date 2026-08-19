@@ -393,7 +393,7 @@ export default function ProductPage() {
               transition={{ duration: 0.8, ease: EASE }}
               className="mt-2 text-[clamp(1.6rem,5.4vw,3rem)] font-semibold leading-tight text-espresso"
             >
-              Equipment Solution for <span className="text-caramel">Your Cafe</span>
+              Equipment Solution for <br /> <span className="text-caramel">Your Cafe</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 14 }}

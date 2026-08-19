@@ -156,7 +156,7 @@ export default function Testimonials() {
             transition={{ duration: 0.8, ease: EASE }}
             className="mt-2 text-[clamp(1.75rem,5.6vw,3.6rem)] font-bold leading-[1.08]"
           >
-            Customer <span className="text-caramel-light">Reviews</span> of Our Beans
+            Customer <span className="text-caramel-light">Reviews</span> <br /> of Our Beans
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 14 }}
