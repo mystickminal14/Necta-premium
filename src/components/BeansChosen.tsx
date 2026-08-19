@@ -15,13 +15,14 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 import ScatterBeans from "./ScatterBeans";
-import pouch from "../assets/new/packet.webp";
+import roastLight from "../assets/new/roast-light.webp";
+import roastMedium from "../assets/new/roast-medium.webp";
+import roastMediumDark from "../assets/new/roast-medium-dark.webp";
 import bean from "../assets/bean.webp";
 
 /* ------------------------------------------------------------------ *
- * Data — one entry per roast. The packet artwork is shared; the band,
- * tint and glow are what make each roast read differently. Swap
- * `image` per roast the day we get three real packet renders.
+ * Data — one entry per roast. Each roast has its own real packet
+ * render; the glow/wash are what tie the stage colour to the choice.
  * ------------------------------------------------------------------ */
 
 interface Card {
@@ -33,8 +34,7 @@ interface Card {
 interface Roast {
   id: string;
   label: string;
-  band: { bg: string; fg: string };
-  tint: string;
+  image: string;
   glow: string;
   wash: string;
   left: [Card, Card, Card];
@@ -47,11 +47,7 @@ const ROASTS: Roast[] = [
   {
     id: "light",
     label: "Light Roast",
-    /* band colours are the real packet print colours; the glow/wash are
-       lightened derivatives, since the packet colours themselves are too dark
-       to read as light on the green stage */
-    band: { bg: "#344A1A", fg: "#f4ecdd" },
-    tint: "brightness(1.06) saturate(0.94)",
+    image: roastLight,
     glow: "rgba(122,158,74,0.32)",
     wash: "radial-gradient(58% 48% at 50% 42%, rgba(122,158,74,0.22), transparent 72%)",
     left: [
@@ -68,8 +64,7 @@ const ROASTS: Roast[] = [
   {
     id: "medium",
     label: "Medium Roast",
-    band: { bg: "#072B4A", fg: "#f4ecdd" },
-    tint: "none",
+    image: roastMedium,
     glow: "rgba(45,98,150,0.38)",
     wash: "radial-gradient(58% 48% at 50% 42%, rgba(45,98,150,0.26), transparent 72%)",
     left: [
@@ -86,8 +81,7 @@ const ROASTS: Roast[] = [
   {
     id: "medium-dark",
     label: "Medium Dark Roast",
-    band: { bg: "#2F1910", fg: "#e8d8bd" },
-    tint: "brightness(0.9) saturate(1.1) contrast(1.05)",
+    image: roastMediumDark,
     glow: "rgba(107,66,38,0.38)",
     wash: "radial-gradient(58% 48% at 50% 42%, rgba(107,66,38,0.26), transparent 72%)",
     left: [
@@ -180,33 +174,10 @@ function PacketFace({ roast, back = false }: { roast: Roast; back?: boolean }) {
       style={{ backfaceVisibility: "hidden", transform: back ? "rotateY(180deg)" : undefined }}
     >
       <img
-        src={pouch}
+        src={roast.image}
         alt={`Necta Coffee — ${roast.label}`}
-        className="w-full drop-shadow-[0_50px_80px_rgba(0,0,0,0.65)] transition-[filter] duration-500"
-        style={{ filter: roast.tint }}
+        className="w-full drop-shadow-[0_50px_80px_rgba(0,0,0,0.65)]"
       />
-      {/* Roast band — covers the printed block at the foot of the label
-          entirely, so the artwork can never say "Dark Roast" while a lighter
-          roast is selected. Coordinates are measured off the packet artwork;
-          re-measure them if the render is ever replaced. */}
-      <div
-        className="absolute flex flex-col items-center justify-center gap-[0.35em] overflow-hidden rounded-[2px] px-[4%] text-center shadow-[0_1px_3px_rgba(0,0,0,0.3)] transition-colors duration-500"
-        style={{
-          left: "9.9%",
-          width: "79.2%",
-          top: "77.6%",
-          height: "12.9%",
-          background: roast.band.bg,
-          color: roast.band.fg,
-        }}
-      >
-        <span className="text-[0.68rem] font-bold uppercase leading-none tracking-[0.16em] sm:text-[0.8rem]">
-          {roast.label}
-        </span>
-        <span className="text-[0.36rem] font-semibold uppercase leading-none tracking-[0.14em] opacity-75 sm:text-[0.42rem]">
-          100% Premium Whole Bean Coffee
-        </span>
-      </div>
     </div>
   );
 }
