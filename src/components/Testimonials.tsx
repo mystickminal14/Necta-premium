@@ -65,7 +65,7 @@ const REVIEWS: Review[] = [
       "We switched three outlets over in one month. Same cup in every one of them, which is the hardest part of running more than one counter.",
     name: "Cafe Partner",
     role: "Operations Lead · Chitwan",
-    rating: 4,
+    rating: 5,
   },
 ];
 

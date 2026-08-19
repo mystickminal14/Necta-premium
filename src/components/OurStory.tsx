@@ -26,10 +26,6 @@ export default function OurStory() {
               className="aspect-4/3 w-full object-cover"
             />
           </div>
-          <div className="absolute bottom-5 left-5 rounded-2xl bg-caramel/90 px-4 py-3 backdrop-blur-sm">
-            <p className="text-[0.6rem] uppercase tracking-[0.18em] text-cream/80">Origin</p>
-            <p className="text-sm font-bold text-white">Jhamsikhel, Lalitpur</p>
-          </div>
         </motion.div>
 
         {/* text */}
