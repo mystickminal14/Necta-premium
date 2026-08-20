@@ -28,43 +28,43 @@ const REVIEWS: Review[] = [
   {
     quote:
       "The roast has been consistent from the first delivery, which means our baristas dial in once and pour the same shot all week.",
-    name: "Cafe Partner",
-    role: "Owner · Kathmandu",
+    name: "Maybe Mars",
+    role: "Swayambhu",
     rating: 5,
   },
   {
     quote:
       "They walked us through grind, dose and machine setup before we opened. It felt less like a supplier and more like a team behind the counter.",
-    name: "Cafe Partner",
-    role: "Head Barista · Pokhara",
+    name: "Coco Cafe",
+    role: "Putalisadak",
     rating: 5,
   },
   {
     quote:
       "Our regulars started asking where the beans come from. Being able to say a Nepali farm, by name, changed how we sell coffee.",
-    name: "Cafe Partner",
-    role: "Founder · Lalitpur",
+    name: "Hajur ko Bakery",
+    role: "Imadol",
     rating: 5,
   },
   {
     quote:
       "The medium dark holds up beautifully in milk — the cocoa note still comes through in a 12oz latte, which is exactly what we needed.",
-    name: "Cafe Partner",
-    role: "Roastery Manager · Bhaktapur",
+    name: "Mui Bakery",
+    role: "Bhaktapur",
     rating: 5,
   },
   {
     quote:
       "Bags arrive within days of roasting and the freshness shows in the bloom. We've stopped keeping a backup supplier.",
-    name: "Cafe Partner",
-    role: "Owner · Butwal",
+    name: "Afnai Coffee",
+    role: "Baneshwor",
     rating: 5,
   },
   {
     quote:
-      "We switched three outlets over in one month. Same cup in every one of them, which is the hardest part of running more than one counter.",
-    name: "Cafe Partner",
-    role: "Operations Lead · Chitwan",
+      "We needed a coffee course that could hold its own after a tasting menu. Necta's beans pour smooth enough for the finish without ever feeling like an afterthought.",
+    name: "Fine Dinners",
+    role: "Chitwan",
     rating: 5,
   },
 ];
@@ -174,8 +174,8 @@ export default function Testimonials() {
             reads as one set rather than a ragged masonry */}
         <div className="mt-10 sm:mt-12 md:hidden">
           <ScrollPager label="Customer reviews" itemClass="w-[86%] min-[480px]:w-[60%]">
-            {REVIEWS.map((r) => (
-              <ReviewCard key={r.role} r={r} />
+            {REVIEWS.map((r, i) => (
+              <ReviewCard key={i} r={r} />
             ))}
           </ScrollPager>
         </div>
@@ -185,7 +185,7 @@ export default function Testimonials() {
         <div className="mt-12 hidden auto-rows-fr gap-5 md:grid md:grid-cols-2 lg:grid-cols-3">
           {REVIEWS.map((r, i) => (
             <motion.div
-              key={r.role}
+              key={i}
               initial={{ opacity: 0, y: 26 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}

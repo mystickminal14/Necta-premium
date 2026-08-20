@@ -19,9 +19,9 @@ import OriginCard from "../components/OriginCard";
 import { COMMERCIAL, ORIGINS, npr } from "../lib/products";
 import { contactLink } from "../lib/enquiry";
 import type { Product, Segment } from "../lib/products";
-import espresso3 from "../assets/espresso-3.webp";
-import espresso2 from "../assets/espresso-2.webp";
 import nectaFaq from "../assets/necta-faq.webp";
+import officineBrugnetti from "../assets/new/officine-brugnetti.jpeg";
+import obelGrinder from "../assets/new/obel-grinder.jpeg";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const BRUGNETTI_URL = "https://www.officinebrugnetti.com/EN/";
@@ -77,16 +77,16 @@ interface Machine {
 
 const MACHINES: Machine[] = [
   {
-    name: "Brugnetti Luna",
+    name: "Officine Brugnetti",
     tag: "Premium",
     blurb: "A commercial-grade espresso machine built for high-volume cafes — precise, powerful and reliable.",
-    img: espresso3,
+    img: officineBrugnetti,
   },
   {
-    name: "Mito Base Compact",
+    name: "Obel Grinders",
     tag: "Standard",
     blurb: "A compact base machine for smaller counters — the everyday workhorse for a steady flow of shots.",
-    img: espresso2,
+    img: obelGrinder,
   },
 ];
 
@@ -350,7 +350,7 @@ export default function ProductPage() {
                   </h3>
                 </div>
                 <p className="max-w-xs text-[0.82rem] leading-relaxed text-espresso/60">
-                  Traceable lots from three growing districts — hover a card for the story behind it.
+                  Traceable lots from three growing districts — hover a card for the story behind it, and many more.
                 </p>
                 <span className="hidden h-px flex-1 basis-full bg-espresso/10 sm:block" />
               </div>
@@ -438,7 +438,7 @@ export default function ProductPage() {
               </a>
             </div>
             <p className="text-[0.82rem] text-espresso/55">
-              Full range on Officine Brugnetti — tell us what you need and we&apos;ll source it.
+              Authorized distributor of Brugnetti machines in Nepal — tell us what you need and we&apos;ll source it.
             </p>
           </motion.div>
         </div>

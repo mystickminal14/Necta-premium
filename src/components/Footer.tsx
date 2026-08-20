@@ -78,7 +78,7 @@ export default function Footer() {
 
           <div>
             <p className="mb-3 text-xs uppercase tracking-[0.18em] text-caramel-light">Reach us</p>
-            <p className="flex items-center gap-2 text-sm"><MapPin className="h-4 w-4 shrink-0 text-caramel-light" /> Jhamsikhel, Lalitpur, Nepal</p>
+            <p className="flex items-center gap-2 text-sm"><MapPin className="h-4 w-4 shrink-0 text-caramel-light" /> Kupondole, Lalitpur, Nepal</p>
             <p className="mt-2 flex items-center gap-2 text-sm"><MessageCircle className="h-4 w-4 shrink-0 text-caramel-light" /> DM for free sample</p>
             <a href="mailto:info@nectacoffeenepal.com" className="mt-2 flex min-h-6 items-center gap-2 text-sm transition-colors hover:text-cream">
               <Mail className="h-4 w-4 shrink-0 text-caramel-light" /> <span className="min-w-0 break-all">info@nectacoffeenepal.com</span>

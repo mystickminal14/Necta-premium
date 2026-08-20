@@ -21,7 +21,7 @@ export default function OurStory() {
             {/* group photo is landscape — 4/3 keeps everyone in frame */}
             <img
               src={teamPhoto}
-              alt="The Necta Coffee team at the roastery in Jhamsikhel, Lalitpur"
+              alt="The Necta Coffee team at their office in Kupondole, Lalitpur"
               loading="lazy"
               className="aspect-4/3 w-full object-cover"
             />
@@ -39,7 +39,7 @@ export default function OurStory() {
           </motion.h2>
 
           <motion.p initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }} className="mt-6 max-w-md text-base leading-relaxed text-cream/65">
-            Necta runs on a small team out of Jhamsikhel, Lalitpur. No middlemen, no borrowed labels — we buy the cherries, cup the lots, roast the batches and seal the bags ourselves.
+            Necta runs on a team with 15 years of experience out of Kupondole, Lalitpur. No middlemen, no borrowed labels — we buy the cherries, cup the lots, roast the batches and seal the bags ourselves.
           </motion.p>
           <motion.p initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }} className="mt-4 max-w-md text-base leading-relaxed text-cream/65">
             Every season we go up to the farms ourselves, taste what the harvest gave us, and pay for the lots we would want to drink. What does not make the cupping table does not make the bag.
