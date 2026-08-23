@@ -20,7 +20,7 @@ import { COMMERCIAL, ORIGINS, npr } from "../lib/products";
 import { contactLink } from "../lib/enquiry";
 import type { Product, Segment } from "../lib/products";
 import nectaFaq from "../assets/necta-faq.webp";
-import officineBrugnetti from "../assets/new/officine-brugnetti.jpeg";
+import officineBrugnetti from "../assets/new/brugnetti-range.webp";
 import obelGrinder from "../assets/new/obel-grinder.jpeg";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -79,13 +79,13 @@ const MACHINES: Machine[] = [
   {
     name: "Officine Brugnetti",
     tag: "Premium",
-    blurb: "A commercial-grade espresso machine built for high-volume cafes — precise, powerful and reliable.",
+    blurb: "All types of Brugnetti machines available — from compact single-group builds to high-volume multi-group setups, sourced to order.",
     img: officineBrugnetti,
   },
   {
     name: "Obel Grinders",
     tag: "Standard",
-    blurb: "A compact base machine for smaller counters — the everyday workhorse for a steady flow of shots.",
+    blurb: "All models of Obel grinders available — on-demand, doser and shop-grinder builds to match your counter.",
     img: obelGrinder,
   },
 ];
